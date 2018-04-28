@@ -1,0 +1,24 @@
+# Files ignored
+*.v11.suo
+*.suo
+*.csproj.user
+
+
+# Directories ignored
+*/Properties/PublishProfiles/
+*/packages/*/
+*/bin/
+*/Properties/PublishProfiles/
+*/packages/*/
+*/bin/
+*/obj/
+*/WebUI/_uploads
+.vs/
+_publish*/
+_bk/
+*.log
+*.mdf
+*.ldf
+*.pubxml.*
+*.user
+

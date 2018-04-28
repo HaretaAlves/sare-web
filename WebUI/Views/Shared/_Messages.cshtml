@@ -1,0 +1,24 @@
+﻿@using WebUI.Utils;
+
+<!-- Alert Messages -->
+@if (TempData[Constants.KEY_ERROR_MESSAGE] != null 
+    && !string.IsNullOrEmpty(string.Concat(TempData[Constants.KEY_ERROR_MESSAGE])))
+{
+    <div class="alert alert-warning" role="alert">
+        <img src="~/Content/Images/Warning.png" alt="Alerta" width="25px" height="25px" />
+        @Html.Raw(TempData[Constants.KEY_ERROR_MESSAGE])
+    </div>
+}
+else if (TempData[Constants.KEY_SUCCESS_MESSAGE] != null
+    && !string.IsNullOrEmpty(string.Concat(TempData[Constants.KEY_SUCCESS_MESSAGE])))
+{
+    <div class="alert alert-success" role="alert">
+        <img src="~/Content/Images/success_icon.png" alt="Alerta" width="25px" height="25px" />
+        @Html.Raw(TempData[Constants.KEY_SUCCESS_MESSAGE])
+    </div>
+}
+
+<!-- Modal -->
+<div class="modal fade vcenter" style="text-align:center;" id="LoadingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <button class="btn btn-lg btn-warning active" style="cursor:default; margin-top:15%;"><i class="fa fa-spinner fa-spin"></i> Processando...</button>
+</div>

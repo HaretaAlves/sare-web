@@ -1,0 +1,56 @@
+﻿@model Domain.Models.ClienteModel
+
+@{
+    ViewBag.Title = "Novo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+
+}
+
+@section Scripts {
+
+}
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Cliente <small>Novo</small>
+        </h1>
+
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-users"></i> <a href="/Clientes/Lista/">Clientes</a>
+            </li>
+
+            <li class="active">
+                <i class="fa fa-user"></i> Novo
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<!-- Start feedback message code -->
+
+@RenderPage("~/Views/Shared/_Messages.cshtml")
+
+<!-- End feedback message code -->
+
+<form action="/Clientes/Save" method="post" role="form">
+    @Html.AntiForgeryToken()
+
+    @RenderPage("~/Views/Clientes/Form.cshtml")
+
+    <div class="row col-md-12">
+
+        <button type="submit" class="btn btn-primary">Inserir</button>
+
+        <button type="reset" class="btn btn-default">Limpar</button>
+
+    </div>
+
+</form>
+<!-- /.row -->
+

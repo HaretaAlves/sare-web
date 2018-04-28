@@ -1,0 +1,56 @@
+﻿@model Domain.Models.LookBookModel
+
+@{
+    ViewBag.Title = "Alterar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+
+}
+
+@section Scripts {
+
+}
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            LookBook <small>Alterar</small>
+        </h1>
+
+        <ol class="breadcrumb">
+
+            <li>
+                <i class="fa fa-users"></i> <a href="/LookBooks/Lista/">LookBooks</a>
+            </li>
+
+            <li class="active">
+                <i class="fa fa-user"></i> Alterar
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<!-- Start feedback message code -->
+
+@RenderPage("~/Views/Shared/_Messages.cshtml")
+
+<!-- End feedback message code -->
+
+<form action="/LookBooks/Save" method="post" role="form">
+    @Html.AntiForgeryToken()
+
+    @RenderPage("~/Views/LookBooks/Form.cshtml")
+
+    <div class="row col-md-12">
+
+        <button type="submit" class="btn btn-primary">Alterar</button>
+
+        <button type="button" onclick="location.href='/LookBooks/Novo/'" class="btn btn-default">Novo</button>
+
+    </div>
+
+</form>
+<!-- /.row -->
