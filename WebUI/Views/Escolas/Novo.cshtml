@@ -1,4 +1,4 @@
-﻿@model Domain.Models.LookBookModel
+﻿@model WebUI.ViewModels.EscolaViewModel
 
 @{
     ViewBag.Title = "Novo";
@@ -17,12 +17,12 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Loja <small>Novo</small>
+            Cadastro de escola <small>Novo</small>
         </h1>
 
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-users"></i> <a href="/LookBooks/Lista/">Lojas</a>
+                <i class="fa fa-users"></i> <a href="/Escolas/Lista/">Escolas</a>
             </li>
 
             <li class="active">
@@ -38,10 +38,10 @@
 
 <!-- End feedback message code -->
 
-<form action="/LookBooks/Save" method="post" role="form">
+<form action="/Escolas/Save" method="post" role="form">
     @Html.AntiForgeryToken()
 
-    @RenderPage("~/Views/LookBooks/Form.cshtml")
+    @RenderPage("~/Views/Escolas/Form.cshtml")
 
     <div class="row col-md-12">
 

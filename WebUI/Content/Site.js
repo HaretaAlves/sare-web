@@ -44,7 +44,7 @@ function postData(url, data, fsuccess) {
         type: "post",
         dataType: "html",
         url: url,
-        data: AddAntiForgeryToken(data),
+        data: { "cod": data },
         success: fsuccess,
         error: function (jqXHR, textStatus, errorThrown) {
             alert($.parseJSON(jqXHR.responseText).error);
@@ -71,7 +71,7 @@ $(".confirmDelete").confirm({
                 location.reload(true);
             }
         }
-        var data = {};
+        var data = $(button).data("id");
         postData(action, data, fsuccess);
     },
     cancel: function (button) {

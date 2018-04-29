@@ -1,4 +1,4 @@
-﻿@model Domain.Models.LojaModel
+﻿@model WebUI.ViewModels.TurmaViewModel
 
 @{
     ViewBag.Title = "Alterar";
@@ -17,13 +17,13 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Loja <small>Alterar</small>
+            Turma <small>Alterar</small>
         </h1>
 
         <ol class="breadcrumb">
 
             <li>
-                <i class="fa fa-users"></i> <a href="/Lojas/Lista/">Lojas</a>
+                <i class="fa fa-users"></i> <a href="/Turmas/Lista/">Turmas</a>
             </li>
 
             <li class="active">
@@ -39,16 +39,16 @@
 
 <!-- End feedback message code -->
 
-<form action="/Lojas/Save" method="post" role="form">
+<form action="/Turmas/Save" method="post" role="form">
     @Html.AntiForgeryToken()
 
-    @RenderPage("~/Views/Lojas/Form.cshtml")
+    @RenderPage("~/Views/Turmas/Form.cshtml")
 
     <div class="row col-md-12">
 
         <button type="submit" class="btn btn-primary">Alterar</button>
 
-        <button type="button" onclick="location.href='/Lojas/Novo/'" class="btn btn-default">Novo</button>
+        <button type="button" onclick="location.href='/Turmas/Novo/'" class="btn btn-default">Novo</button>
 
     </div>
 

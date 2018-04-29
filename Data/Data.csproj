@@ -53,13 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Migrations\201804270056022_initial.cs" />
     <Compile Include="Migrations\201804270056022_initial.Designer.cs">
       <DependentUpon>201804270056022_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="SARERepository.cs" />
     <Compile Include="SareWebContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DAO\EscolaDAO.cs" />
+    <Compile Include="DAO\TurmaDAO.cs" />
+    <Compile Include="UOW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -69,6 +74,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{df63242c-0260-46b8-b85d-f2885b09b729}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{f56cedfd-d668-4b7d-a674-3b15216b44f4}</Project>
+      <Name>Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

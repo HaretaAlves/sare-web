@@ -175,8 +175,8 @@
     <Compile Include="Controllers\CandidatasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ContatosController.cs" />
-    <Compile Include="Controllers\LojasController.cs" />
-    <Compile Include="Controllers\LookBooksController.cs" />
+    <Compile Include="Controllers\TurmasController.cs" />
+    <Compile Include="Controllers\EscolasController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Controllers\RevendedoresController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -186,7 +186,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\SessionUtil.cs" />
-    <Compile Include="ViewModels\CampanhaViewModel.cs" />
+    <Compile Include="ViewModels\EscolaViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioViewModel.cs" />
+    <Compile Include="ViewModels\TurmaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -246,18 +248,18 @@
     <Content Include="Views\Campanhas\Form.cshtml" />
     <Content Include="Views\Candidatas\Lista.cshtml" />
     <Content Include="Views\Contatos\Lista.cshtml" />
-    <Content Include="Views\Lojas\Lista.cshtml" />
-    <Content Include="Views\Lojas\Novo.cshtml" />
-    <Content Include="Views\Lojas\Alterar.cshtml" />
-    <Content Include="Views\Lojas\Form.cshtml" />
+    <Content Include="Views\Turmas\Lista.cshtml" />
+    <Content Include="Views\Turmas\Novo.cshtml" />
+    <Content Include="Views\Turmas\Alterar.cshtml" />
+    <Content Include="Views\Turmas\Form.cshtml" />
     <Content Include="Views\Marca\Lista.cshtml" />
     <Content Include="Views\Marca\Novo.cshtml" />
     <Content Include="Views\Marca\Alterar.cshtml" />
     <Content Include="Views\Marca\Form.cshtml" />
-    <Content Include="Views\LookBooks\Lista.cshtml" />
-    <Content Include="Views\LookBooks\Novo.cshtml" />
-    <Content Include="Views\LookBooks\Alterar.cshtml" />
-    <Content Include="Views\LookBooks\Form.cshtml" />
+    <Content Include="Views\Escolas\Lista.cshtml" />
+    <Content Include="Views\Escolas\Novo.cshtml" />
+    <Content Include="Views\Escolas\Alterar.cshtml" />
+    <Content Include="Views\Escolas\Form.cshtml" />
     <Content Include="Content\gallery-lightbox\ekko-lightbox.js.map" />
     <Content Include="Content\gallery-lightbox\ekko-lightbox.min.js.map" />
     <None Include="Web.Debug.config">
@@ -273,6 +275,10 @@
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{659ed023-8db9-4737-b22a-6b77c27f80b6}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{DC6F948E-F9D5-4D95-AA47-2959C0787FBA}</Project>
       <Name>Data</Name>

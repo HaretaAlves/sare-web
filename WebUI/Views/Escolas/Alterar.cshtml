@@ -1,7 +1,7 @@
-﻿@model Domain.Models.LojaModel
+﻿@model WebUI.ViewModels.EscolaViewModel
 
 @{
-    ViewBag.Title = "Novo";
+    ViewBag.Title = "Alterar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,16 +17,17 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Loja <small>Novo</small>
+            Escola <small>Alterar</small>
         </h1>
 
         <ol class="breadcrumb">
+
             <li>
-                <i class="fa fa-users"></i> <a href="/Lojas/Lista/">Lojas</a>
+                <i class="fa fa-users"></i> <a href="/Escolas/Lista/">Escolas</a>
             </li>
 
             <li class="active">
-                <i class="fa fa-user"></i> Novo
+                <i class="fa fa-user"></i> Alterar
             </li>
         </ol>
     </div>
@@ -38,16 +39,16 @@
 
 <!-- End feedback message code -->
 
-<form action="/Lojas/Save" method="post" role="form">
+<form action="/Escolas/Save" method="post" role="form">
     @Html.AntiForgeryToken()
 
-    @RenderPage("~/Views/Lojas/Form.cshtml")
+    @RenderPage("~/Views/Escolas/Form.cshtml")
 
     <div class="row col-md-12">
 
-        <button type="submit" class="btn btn-primary">Inserir</button>
+        <button type="submit" class="btn btn-primary">Alterar</button>
 
-        <button type="reset" class="btn btn-default">Limpar</button>
+        <button type="button" onclick="location.href='/Escolas/Novo/'" class="btn btn-default">Novo</button>
 
     </div>
 

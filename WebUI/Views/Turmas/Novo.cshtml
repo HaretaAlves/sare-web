@@ -1,7 +1,7 @@
-﻿@model Domain.Models.LookBookModel
+﻿@model WebUI.ViewModels.TurmaViewModel
 
 @{
-    ViewBag.Title = "Alterar";
+    ViewBag.Title = "Novo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,17 +17,16 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            LookBook <small>Alterar</small>
+            Turma <small>Novo</small>
         </h1>
 
         <ol class="breadcrumb">
-
             <li>
-                <i class="fa fa-users"></i> <a href="/LookBooks/Lista/">LookBooks</a>
+                <i class="fa fa-users"></i> <a href="/Turmas/Lista/">Turmas</a>
             </li>
 
             <li class="active">
-                <i class="fa fa-user"></i> Alterar
+                <i class="fa fa-user"></i> Novo
             </li>
         </ol>
     </div>
@@ -39,16 +38,16 @@
 
 <!-- End feedback message code -->
 
-<form action="/LookBooks/Save" method="post" role="form">
+<form action="/Turmas/Save" method="post" role="form">
     @Html.AntiForgeryToken()
 
-    @RenderPage("~/Views/LookBooks/Form.cshtml")
+    @RenderPage("~/Views/Turmas/Form.cshtml")
 
     <div class="row col-md-12">
 
-        <button type="submit" class="btn btn-primary">Alterar</button>
+        <button type="submit" class="btn btn-primary">Inserir</button>
 
-        <button type="button" onclick="location.href='/LookBooks/Novo/'" class="btn btn-default">Novo</button>
+        <button type="reset" class="btn btn-default">Limpar</button>
 
     </div>
 

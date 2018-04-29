@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebUI.Utils;
 using Domain.Extensions;
+using Business;
+using WebUI.ViewModels;
 
 namespace WebUI.Controllers
 {
@@ -17,6 +19,13 @@ namespace WebUI.Controllers
         public const string ActionAlterar = "Alterar";
         public const string ActionExcluir = "Excluir";
 
+        private UsuarioBusiness usuarioBusiness = null;
+
+        public UsuariosController()
+        {
+            this.usuarioBusiness = new UsuarioBusiness();
+        }
+
         public ActionResult Index()
         {
             return RedirectToAction(ActionLista);
@@ -24,13 +33,21 @@ namespace WebUI.Controllers
 
         public ActionResult Lista()
         {
-            return View(dbcontext.Usuarios.ToList());
+            var model = new UsuarioViewModel();
+
+            model.Usuarios = this.usuarioBusiness.ListAll().ToList();
+            return View(model);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Lista(string nome)
         {
-            return View(dbcontext.Usuarios.Where(o => o.Nome.Contains(nome)));
+            var list = this.usuarioBusiness.ListAllByNome(nome);
+
+            UsuarioViewModel model = new UsuarioViewModel();
+            model.Usuarios = list.ToList();
+
+            return View(model);
         }
 
         public ActionResult Novo()
@@ -42,28 +59,42 @@ namespace WebUI.Controllers
         public ActionResult Save(UsuarioModel model)
         {
             ActionResult result = null;
+            UsuarioModel usuario = new UsuarioModel();
 
             try
             {
                 if (model.ID > 0)
                 {
                     result = RedirectToAction(ActionAlterar, new { id = model.ID });
-                    var entity = dbcontext.Usuarios.Where(o => o.ID == model.ID).FirstOrDefault();
-                    entity.Login = model.Login;
-                    entity.Nome = model.Nome;
-                    if (!string.IsNullOrEmpty(model.Senha)) entity.Senha = model.Senha;
-                    entity.Email = model.Email;
+                    usuario = this.usuarioBusiness.GetById(model.ID);
+                    usuario.Nome = model.Nome;
+                    usuario.Login = model.Login;
+                    usuario.Email = model.Email;
+                    usuario.LastModifiedDate = DateTime.Now;
+                    usuario.Status = "UPDATED";
+
+                    if(model.Senha != null)
+                    {
+                        usuario.Senha = model.Senha;
+                    }
+
+                    this.usuarioBusiness.Update(usuario);
                 }
                 else
                 {
                     result = RedirectToAction(ActionNovo);
-                    dbcontext.Usuarios.Add(model);
+                    usuario.Nome = model.Nome;
+                    usuario.Login = model.Login;
+                    usuario.Senha = model.Senha;
+                    usuario.Email = model.Email;
+                    usuario.LastModifiedDate = DateTime.Now;
+                    usuario.Status = "ADDED";
+
+                    this.usuarioBusiness.Add(usuario);
                 }
-                
-                dbcontext.SaveChanges();
 
                 TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_SAVE;
-                result = RedirectToAction(ActionAlterar, new { id = model.ID });
+                result = RedirectToAction(ActionLista);
             }
             catch (Exception ex)
             {
@@ -75,25 +106,34 @@ namespace WebUI.Controllers
 
         public ActionResult Alterar(int id)
         {
-            var entity = dbcontext.Usuarios.Where(o => o.ID == id).FirstOrDefault();
+            var entity = this.usuarioBusiness.GetById(id);
 
-            return View(entity);
+            var model = new UsuarioViewModel();
+
+            model.ID = entity.ID;
+            model.Nome = entity.Nome;
+            model.Login = entity.Login;
+            model.Senha = entity.Senha;
+            model.Email = entity.Email;
+            model.LastModifiedDate = entity.LastModifiedDate;
+            model.Status = entity.Status;
+
+            return View(model);
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public void Excluir(string cod)
         {
             try
             {
                 int id;
                 int.TryParse(cod, out id);
-                var model = dbcontext.Usuarios.FirstOrDefault(o => o.ID == id);
+                var model = this.usuarioBusiness.GetById(id);
                 if (model == null)
                 {
                     throw new Exception("ID não encontrado");
                 }
-                dbcontext.Usuarios.Remove(model);
-                dbcontext.SaveChanges();
+                this.usuarioBusiness.Delete(model);
                 TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_DELETE;
             }
             catch (Exception ex)

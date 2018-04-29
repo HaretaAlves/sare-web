@@ -1,33 +1,46 @@
-﻿using Domain.Extensions;
+﻿using Business;
+using Domain.Extensions;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebUI.Utils;
+using WebUI.ViewModels;
 
 namespace WebUI.Controllers
 {
-    public class LojasController : BaseController
+    public class EscolasController : BaseController
     {
-        public const string ControllerName = "Lojas";
+        public const string ControllerName = "Escolas";
         public const string ActionLista = "Lista";
         public const string ActionNovo = "Novo";
         public const string ActionAlterar = "Alterar";
         public const string ActionExcluir = "Excluir";
 
+        private EscolaBusiness escolaBusiness = null;
+
+        public EscolasController()
+        {
+            this.escolaBusiness = new EscolaBusiness();
+        }
+
         public ActionResult Index()
         {
             return RedirectToAction(ActionLista);
-        }
+        }              
 
-        /*
         public ActionResult Lista()
         {
-            return View(dbcontext.Lojas.ToList());
+            var model = new EscolaViewModel();
+
+            model.Escolas = this.escolaBusiness.ListAll().ToList();
+            return View(model);
         }
 
+        
         public ActionResult Novo()
         {
             return View();
@@ -35,45 +48,63 @@ namespace WebUI.Controllers
 
         public ActionResult Alterar(int id)
         {
-            var entity = dbcontext.Lojas.Where(o => o.ID == id).FirstOrDefault();
+            var entity = this.escolaBusiness.GetById(id);
 
-            return View(entity);
+            var model = new EscolaViewModel();
+
+            model.ID = entity.ID;
+            model.Nome = entity.Nome;
+            model.LastModifiedDate = entity.LastModifiedDate;
+            model.Status = entity.Status;
+
+            return View(model);
         }
 
+        
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Lista(string nome)
         {
-            return View(dbcontext.Lojas.Where(o => o.Nome.Contains(nome)));
+            var list = this.escolaBusiness.ListAllByNome(nome);
+
+            EscolaViewModel model = new EscolaViewModel();
+            model.Escolas = list.ToList();
+
+            return View(model);
         }
 
+        
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Save(AvaliacaoModel model)
+        public ActionResult Save(EscolaModel model)
         {
             ActionResult result = null;
+            EscolaModel escola = new EscolaModel();
 
             try
             {
                 if (model.ID > 0)
                 {
                     result = RedirectToAction(ActionAlterar, new { id = model.ID });
-                    var entity = dbcontext.Lojas.Where(o => o.ID == model.ID).FirstOrDefault();
-                    entity.Nome = model.Nome;
-                    entity.Estado = model.Estado;
-                    entity.Cidade = model.Cidade;
-                    entity.Endereco = model.Endereco;
-                    entity.Telefone = model.Telefone;
-                    entity.Email = model.Email;
+                    escola = this.escolaBusiness.GetById(model.ID);
+                    escola.Nome = model.Nome;
+                    escola.LastModifiedDate = DateTime.Now;
+                    escola.Status = "UPDATED";
+                    escola.UserID = 1;
+
+                    this.escolaBusiness.Update(escola);
                 }
                 else
                 {
                     result = RedirectToAction(ActionNovo);
-                    dbcontext.Lojas.Add(model);
+                    escola.Nome = model.Nome;
+                    escola.LastModifiedDate = DateTime.Now;
+                    escola.Status = "ADDED";
+                    escola.UserID = 1;
+
+                    this.escolaBusiness.Add(escola);
                 }
 
-                dbcontext.SaveChanges();
-
                 TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_SAVE;
-                result = RedirectToAction(ActionAlterar, new { id = model.ID });
+                result = RedirectToAction(ActionLista);
             }
             catch (Exception ex)
             {
@@ -82,21 +113,20 @@ namespace WebUI.Controllers
 
             return result;
         }
-
-        [HttpPost, ValidateAntiForgeryToken]
+        
+        [HttpPost]
         public void Excluir(string cod)
         {
             try
             {
                 int id;
                 int.TryParse(cod, out id);
-                var model = dbcontext.Lojas.FirstOrDefault(o => o.ID == id);
+                var model = this.escolaBusiness.GetById(id);
                 if (model == null)
                 {
                     throw new Exception("ID não encontrado");
                 }
-                dbcontext.Lojas.Remove(model);
-                dbcontext.SaveChanges();
+                this.escolaBusiness.Delete(model);
                 TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_DELETE;
             }
             catch (Exception ex)
@@ -104,6 +134,6 @@ namespace WebUI.Controllers
                 TempData[Constants.KEY_ERROR_MESSAGE] = ex.ToStringAll();
             }
         }
-        */
+        
     }
 }
