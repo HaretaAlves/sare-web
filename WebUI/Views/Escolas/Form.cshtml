@@ -11,7 +11,7 @@
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
                 <label>*Nome</label>
-                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @required = true })
                 @Html.ValidationMessageFor(model => model.Nome, String.Empty, new { @for = "inputError", @class = "control-label" })
             </div>
 

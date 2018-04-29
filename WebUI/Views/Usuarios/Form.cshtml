@@ -11,7 +11,7 @@
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
                 <label>*Nome</label>
-                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @required = true })
                 @Html.ValidationMessageFor(model => model.Nome, String.Empty, new { @for = "inputError", @class = "control-label" })
             </div>
 
@@ -21,7 +21,7 @@
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Email")) { @Html.Raw("has-error") }">
                 <label>*E-Mail</label>
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email" })
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", @required = true })
                 @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @for = "inputError", @class = "control-label" })
             </div>
 
@@ -31,13 +31,13 @@
 
             <div class="form-group col-md-6 @if (!ViewData.ModelState.IsValidField("Login")) { @Html.Raw("has-error") }">
                 <label>*Login</label>
-                @Html.TextBoxFor(model => model.Login, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Login, new { @class = "form-control", @required = true })
                 @Html.ValidationMessageFor(model => model.Login, String.Empty, new { @for = "inputError", @class = "control-label" })
             </div>
 
             <div class="form-group col-md-6 @if (!ViewData.ModelState.IsValidField("Senha")) { @Html.Raw("has-error") }">
                 <label>*Senha</label>
-                @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
+                @Html.PasswordFor(model => model.Senha, new { @class = "form-control", @required = true })
                 @Html.ValidationMessageFor(model => model.Senha, String.Empty, new { @for = "inputError", @class = "control-label" })
             </div>
 
