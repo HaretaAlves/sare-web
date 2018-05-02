@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\GrupoDAO.cs" />
+    <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Migrations\201804270056022_initial.cs" />
     <Compile Include="Migrations\201804270056022_initial.Designer.cs">

@@ -15,6 +15,8 @@ namespace Data.UOW
         private IEscolaDAO<EscolaModel> _escolas;
         private ITurmaDAO<TurmaModel> _turmas;
         private IUsuarioDAO<UsuarioModel> _usuarios;
+        private IAlunoDAO<AlunoModel> _alunos;
+        private IGrupoDAO<GrupoModel> _grupos;
 
         private SareWebContext _dbSSPContext { get; set; }
 
@@ -91,6 +93,30 @@ namespace Data.UOW
                     this._usuarios = new UsuarioDAO(this._dbSSPContext);
                 }
                 return this._usuarios;
+            }
+        }
+
+        public IAlunoDAO<AlunoModel> Alunos
+        {
+            get
+            {
+                if (this._alunos == null)
+                {
+                    this._alunos = new AlunoDAO(this._dbSSPContext);
+                }
+                return this._alunos;
+            }
+        }
+
+        public IGrupoDAO<GrupoModel> Grupos
+        {
+            get
+            {
+                if (this._grupos == null)
+                {
+                    this._grupos = new GrupoDAO(this._dbSSPContext);
+                }
+                return this._grupos;
             }
         }
 

@@ -2,66 +2,65 @@
 using Domain.Extensions;
 using Domain.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WebUI.Utils;
 using WebUI.ViewModels;
 
 namespace WebUI.Controllers
 {
-    public class TurmasController : BaseController
+    public class AlunosController : BaseController
     {
-        public const string ControllerName = "Turmas";
+        public const string ControllerName = "Alunos";
         public const string ActionLista = "Lista";
         public const string ActionNovo = "Novo";
         public const string ActionAlterar = "Alterar";
         public const string ActionExcluir = "Excluir";
 
+        private AlunoBusiness alunoBusiness = null;
         private TurmaBusiness turmaBusiness = null;
-        private EscolaBusiness escolaBusiness = null;
 
-        public TurmasController()
+        public AlunosController()
         {
+            this.alunoBusiness = new AlunoBusiness();
             this.turmaBusiness = new TurmaBusiness();
-            this.escolaBusiness = new EscolaBusiness();
         }
 
         public ActionResult Index()
         {
             return RedirectToAction(ActionLista);
-        }
+        }        
 
         public ActionResult Lista()
         {
-            var model = new TurmaViewModel();
+            var model = new AlunoViewModel();
 
-            model.Escolas = this.escolaBusiness.ListAll().ToList();
+            model.Alunos = this.alunoBusiness.ListAll().ToList();
             model.Turmas = this.turmaBusiness.ListAll().ToList();
             return View(model);
         }
 
         public ActionResult Novo()
         {
-            var model = new TurmaViewModel();
+            var model = new AlunoViewModel();
 
-            model.Escolas = this.escolaBusiness.ListAll().ToList();
+            model.Turmas = this.turmaBusiness.ListAll().ToList();
             return View(model);
         }
 
         public ActionResult Alterar(int id)
         {
-            var entity = this.turmaBusiness.GetById(id);
+            var entity = this.alunoBusiness.GetById(id);
 
-            var model = new TurmaViewModel();
+            var model = new AlunoViewModel();
 
             model.ID = entity.ID;
             model.Nome = entity.Nome;
+            model.DataNascimento = entity.DataNascimento;
             model.LastModifiedDate = entity.LastModifiedDate;
-            model.Escolas = this.escolaBusiness.ListAll().ToList();
-            model.EscolaID = entity.EscolaID;
-            model.EscolaSelecionada = model.Escolas.Where(x => x.ID == model.EscolaID).FirstOrDefault();
+            model.Turmas = this.turmaBusiness.ListAll().ToList();
+            model.TurmaID = entity.TurmaID;
+            model.TurmaSelecionada = model.Turmas.Where(x => x.ID == model.TurmaID).FirstOrDefault();
             model.Status = entity.Status;
 
             return View(model);
@@ -70,46 +69,50 @@ namespace WebUI.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Lista(string nome)
         {
-            var list = this.turmaBusiness.ListAllByNome(nome);
+            var list = this.alunoBusiness.ListAllByNome(nome);
 
-            TurmaViewModel model = new TurmaViewModel();
-            model.Turmas = list.ToList();
+            AlunoViewModel model = new AlunoViewModel();
+            model.Alunos = list.ToList();
 
             return View(model);
         }
-
+        
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Save(TurmaViewModel model)
+        public ActionResult Save(AlunoModel model)
         {
             ActionResult result = null;
-            TurmaModel turma = new TurmaModel();
+            AlunoModel aluno = new AlunoModel();
 
             try
             {
                 if (model.ID > 0)
                 {
                     result = RedirectToAction(ActionAlterar, new { id = model.ID });
-                    turma = this.turmaBusiness.GetById(model.ID);
-                    turma.Nome = model.Nome;
-                    turma.EscolaID = model.EscolaID;
-                    turma.LastModifiedDate = DateTime.Now;
-                    turma.Status = "UPDATED";
-                    turma.UserID = 1;
+                    aluno = this.alunoBusiness.GetById(model.ID);
+                    aluno.Nome = model.Nome;
+                    aluno.DataNascimento = model.DataNascimento;
+                    aluno.TurmaID = model.TurmaID;
+                    aluno.LastModifiedDate = DateTime.Now;
+                    aluno.Status = "UPDATED";
+                    aluno.UserID = 1;
+                    aluno.FotoID = 1;
 
-                    this.turmaBusiness.Update(turma);
+                    this.alunoBusiness.Update(aluno);
                 }
                 else
                 {
                     result = RedirectToAction(ActionNovo);
-                    turma.Nome = model.Nome;
-                    turma.EscolaID = model.EscolaID;
-                    turma.LastModifiedDate = DateTime.Now;
-                    turma.Status = "ADDED";
-                    turma.UserID = 1;
+                    aluno.Nome = model.Nome;
+                    aluno.DataNascimento = model.DataNascimento;
+                    aluno.TurmaID = model.TurmaID;
+                    aluno.LastModifiedDate = DateTime.Now;
+                    aluno.Status = "ADDED";
+                    aluno.UserID = 1;
+                    aluno.FotoID = 1;
 
-                    this.turmaBusiness.Add(turma);
+                    this.alunoBusiness.Add(aluno);
                 }
-                
+
                 TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_SAVE;
                 result = RedirectToAction(ActionLista);
             }
@@ -120,7 +123,7 @@ namespace WebUI.Controllers
 
             return result;
         }
-
+        
         [HttpPost]
         public void Excluir(string cod)
         {
@@ -128,12 +131,12 @@ namespace WebUI.Controllers
             {
                 int id;
                 int.TryParse(cod, out id);
-                var model = this.turmaBusiness.GetById(id);
+                var model = this.alunoBusiness.GetById(id);
                 if (model == null)
                 {
                     throw new Exception("ID não encontrado");
                 }
-                this.turmaBusiness.Delete(model);
+                this.alunoBusiness.Delete(model);
                 TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_DELETE;
             }
             catch (Exception ex)
@@ -141,5 +144,6 @@ namespace WebUI.Controllers
                 TempData[Constants.KEY_ERROR_MESSAGE] = ex.ToStringAll();
             }
         }
+        
     }
 }

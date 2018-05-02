@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GrupoBusiness.cs" />
     <Compile Include="EscolaBusiness.cs" />
+    <Compile Include="AlunoBusiness.cs" />
     <Compile Include="UsuarioBusiness.cs" />
     <Compile Include="TurmaBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

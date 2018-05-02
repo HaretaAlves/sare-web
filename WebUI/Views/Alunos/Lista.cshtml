@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Models.MarcaModel>
+﻿@model WebUI.ViewModels.AlunoViewModel
 
 @{
     ViewBag.Title = "Lista";
@@ -46,12 +46,12 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Marca <small>Lista</small>
+            Alunos <small>Lista</small>
         </h1>
 
         <ol class="breadcrumb">
             <li class="active">
-                <i class="fa fa-users"></i> Marca
+                <i class="fa fa-users"></i> Alunos
             </li>
         </ol>
     </div>
@@ -61,7 +61,13 @@
 
 @RenderPage("~/Views/Shared/_Messages.cshtml")
 
-<form name="ListaForm" id="ListaForm" action="/Marca/Lista" method="post" role="form">
+<!-- End feedback message code -->
+@*<form name="DeleteForm" action="/Usuarios/Excluir/" id="DeleteForm" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="cod" name="cod" />
+    </form>*@
+
+<form name="ListaForm" id="ListaForm" action="/Alunos/Lista" method="post" role="form">
     @Html.AntiForgeryToken()
     <div class="row">
 
@@ -74,7 +80,7 @@
 
             <div class="form-group pull-right">
                 <button type="reset" class="btn btn-default" onclick="document.getElementById('ListaForm').submit()">Buscar</button>
-                <button type="reset" class="btn btn-default" onclick="location.href='/Marca/Novo'">Novo</button>
+                <button type="reset" class="btn btn-default" onclick="location.href='/Alunos/Novo'">Novo</button>
             </div>
 
         </div>
@@ -86,7 +92,7 @@
 </form>
 
 <div class="row">
-    @if (Model != null)
+    @if (Model.Alunos != null)
     {
         <div class="col-md-6 table-responsive">
             <table class="table table-bordered table-hover table-striped">
@@ -98,7 +104,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model.Count() == 0)
+                    @if (Model.Alunos.Count() == 0)
                     {
                         <tr>
                             <td colspan="4"><label>Nenhum registro encontrado</label></td>
@@ -106,11 +112,11 @@
                     }
                     else
                     {
-                        foreach (var item in Model)
+                        foreach (var item in Model.Alunos)
                         {
                             <tr>
-                                <td style="text-align: center;"><i class="glyphicon glyphicon-remove confirmDelete" data-id="@item.ID" data-action="/Marca/Excluir/" style="cursor:pointer;"></i></td>
-                                <td style="text-align: center;"><span onclick="location.href='/Marca/Alterar/@item.ID'" class="glyphicon glyphicon-pencil" style="cursor:pointer;" /></td>
+                                <td style="text-align: center;"><i class="glyphicon glyphicon-remove confirmDelete" data-id="@item.ID" data-action="/Alunos/Excluir/" style="cursor:pointer;"></i></td>
+                                <td style="text-align: center;"><span onclick="location.href='/Alunos/Alterar/@item.ID'" class="glyphicon glyphicon-pencil" style="cursor:pointer;" /></td>
                                 <td>@item.Nome</td>
                             </tr>
                         }

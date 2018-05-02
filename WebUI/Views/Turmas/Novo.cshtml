@@ -22,7 +22,7 @@
 
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-users"></i> <a href="/Turmas/Lista/">Turmas</a>
+                <i class="fa fa-users"></i> <a href="/Grupos/Lista/">Grupos</a>
             </li>
 
             <li class="active">
@@ -38,10 +38,10 @@
 
 <!-- End feedback message code -->
 
-<form action="/Turmas/Save" method="post" role="form">
+<form action="/Grupos/Save" method="post" role="form">
     @Html.AntiForgeryToken()
 
-    @RenderPage("~/Views/Turmas/Form.cshtml")
+    @RenderPage("~/Views/Grupos/Form.cshtml")
 
     <div class="row col-md-12">
 

@@ -1,4 +1,4 @@
-﻿@model Domain.Models.RevendedorModel
+﻿@model WebUI.ViewModels.AlunoViewModel
 
 @{
     ViewBag.Title = "Novo";
@@ -17,12 +17,12 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Revendedor <small>Novo</small>
+            Aluno <small>Novo</small>
         </h1>
 
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-users"></i> <a href="/Revendedores/Lista/">Revendedores</a>
+                <i class="fa fa-users"></i> <a href="/Alunos/Lista/">Alunos</a>
             </li>
 
             <li class="active">
@@ -38,10 +38,10 @@
 
 <!-- End feedback message code -->
 
-<form action="/Revendedores/Save" method="post" role="form">
+<form action="/Alunos/Save" method="post" role="form">
     @Html.AntiForgeryToken()
 
-    @RenderPage("~/Views/Revendedores/Form.cshtml")
+    @RenderPage("~/Views/Alunos/Form.cshtml")
 
     <div class="row col-md-12">
 
