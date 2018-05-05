@@ -1,0 +1,60 @@
+//  Site Settings
+//  -----------------------------
+// Global
+//  -----------------------------
+
+//  -----------------------------
+// Color Definitions
+//  -----------------------------
+$purple-overlay: rgba(60, 72, 89, 0.7);
+$purple: #3F599C;
+$light-gray: #bebebe;
+$dark-gray: #3C4859;
+$white: white;
+$bg-color: #f2f2f2;
+$locked-color: #5fc0d1;
+
+//  -----------------------------
+// Button Definitions
+//  -----------------------------
+$button-border: 1px solid $light-gray;
+$quiz-stat-border: 1px solid $light-gray;
+$large-box-inverted-border: 1px solid $purple;
+
+//  -----------------------------
+// Size Definitions
+//  -----------------------------
+$expanded: 200px;
+$collapsed: 100px;
+$collapse-button-width: 30px;
+
+//  -----------------------------
+// Font Size Definitions
+//  -----------------------------
+$large-box-font-size: 26px;
+$box-subtitle-font-size: 14px;
+$content-title-font-size: 26px;
+$content-subtitle-font-size: 24px;
+$content-text-font-size: 16px;
+$question-font-size: 26px;
+$large-font-size: 40px;
+$medium-font-size: 24px;
+$small-font-size: 16px;
+
+
+//  -----------------------------
+// Font Definitions
+//  -----------------------------
+
+$lato: 'Lato Regular';
+$FontAwesome: 'FontAwesome';
+
+@font-face {
+    font-family: 'Lato Regular';
+    src: url('../fonts/Lato-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('./fonts/fa-solid-900.ttf');
+}
