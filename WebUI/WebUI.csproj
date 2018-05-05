@@ -135,7 +135,6 @@
     <Content Include="Content\Images\success_icon.png" />
     <Content Include="Content\Images\Warning.png" />
     <Content Include="Content\js\jquery.js" />
-    <Content Include="Content\signin.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.js" />
     <Content Include="Content\src\fonts\fa-solid-900.svg" />
