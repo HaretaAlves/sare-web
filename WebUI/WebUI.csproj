@@ -125,42 +125,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap\css\bootstrap-rtl.css" />
-    <Content Include="Content\bootstrap\css\bootstrap-rtl.min.css" />
-    <Content Include="Content\bootstrap\css\bootstrap.css" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
-    <Content Include="Content\bootstrap\css\plugins\morris.css" />
-    <Content Include="Content\bootstrap\css\sb-admin-rtl.css" />
-    <Content Include="Content\bootstrap\css\sb-admin.css" />
-    <Content Include="Content\bootstrap\font-awesome\css\font-awesome.css" />
-    <Content Include="Content\bootstrap\font-awesome\css\font-awesome.min.css" />
-    <Content Include="Content\bootstrap\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Content\bootstrap\js\jquery.js" />
-    <Content Include="Content\bootstrap\js\plugins\flot\excanvas.min.js" />
-    <Content Include="Content\bootstrap\js\plugins\flot\flot-data.js" />
-    <Content Include="Content\bootstrap\js\plugins\flot\jquery.flot.js" />
-    <Content Include="Content\bootstrap\js\plugins\flot\jquery.flot.pie.js" />
-    <Content Include="Content\bootstrap\js\plugins\flot\jquery.flot.resize.js" />
-    <Content Include="Content\bootstrap\js\plugins\flot\jquery.flot.tooltip.min.js" />
-    <Content Include="Content\bootstrap\js\plugins\morris\morris-data.js" />
-    <Content Include="Content\bootstrap\js\plugins\morris\morris.js" />
-    <Content Include="Content\bootstrap\js\plugins\morris\morris.min.js" />
-    <Content Include="Content\bootstrap\js\plugins\morris\raphael.min.js" />
+    <Content Include="Content\bootstrap\css\sb-admin.css" />
     <Content Include="Content\gallery-lightbox\ekko-lightbox.css" />
     <Content Include="Content\gallery-lightbox\ekko-lightbox.js" />
     <Content Include="Content\gallery-lightbox\ekko-lightbox.min.js" />
     <Content Include="Content\Images\BG-3.png" />
     <Content Include="Content\Images\success_icon.png" />
     <Content Include="Content\Images\Warning.png" />
-    <Content Include="Content\jquery.confirm.min.js" />
+    <Content Include="Content\js\jquery.js" />
     <Content Include="Content\signin.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.js" />
+    <Content Include="Content\src\fonts\fa-solid-900.svg" />
     <Content Include="Global.asax" />
     <Content Include="GoogleMaps.LocationServices.readme.txt" />
+    <Content Include="gulpfile.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -191,40 +172,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Content\bootstrap\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\bootstrap\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\bootstrap\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\bootstrap\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Content\bootstrap\font-awesome\less\bordered-pulled.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\core.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\fixed-width.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\font-awesome.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\icons.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\larger.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\list.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\mixins.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\path.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\rotated-flipped.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\spinning.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\stacked.less" />
-    <Content Include="Content\bootstrap\font-awesome\less\variables.less" />
-    <Content Include="Content\bootstrap\font-awesome\scss\font-awesome.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_bordered-pulled.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_core.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_fixed-width.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_icons.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_larger.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_list.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_mixins.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_path.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_rotated-flipped.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_spinning.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_stacked.scss" />
-    <Content Include="Content\bootstrap\font-awesome\scss\_variables.scss" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\App\Index.cshtml" />
     <Content Include="Views\App\Login.cshtml" />
@@ -251,6 +198,11 @@
     <Content Include="Content\gallery-lightbox\ekko-lightbox.js.map" />
     <Content Include="Content\gallery-lightbox\ekko-lightbox.min.js.map" />
     <Content Include="Views\Grupos\Alterar.cshtml" />
+    <Content Include="Content\src\sass\login.scss" />
+    <Content Include="Content\src\sass\main.scss" />
+    <Content Include="Content\src\sass\_settings.scss" />
+    <Content Include="package.json" />
+    <Content Include="Content\src\fonts\Lato-Regular.ttf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -260,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\dist\css\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
