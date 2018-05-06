@@ -48,12 +48,12 @@ html, body {
         padding: 10px 10px 10px 15px;
 
         a {
-            color: $light-gray;
+            color: $black;
             font-family: $lato;
 
             &.active,
             &:hover {
-                color: $purple;
+                color: $blue;
             }
         }
 
@@ -81,7 +81,7 @@ html, body {
 
 
         .username-text {
-            margin-top: 5px;
+            margin-top: 15px;
         }
 
         img {
@@ -147,21 +147,18 @@ html, body {
     height: 120px;
     display: flex;
     align-items: center;
-    justify-content: start;
-    padding-left: 20px;
+    justify-content: center;
 
     .sidebar-logo__img {
         flex-grow:0;
         flex-shrink:0;
-        width: 80px;
-        margin-right: 20px;
     }
 
     .sidebar-logo__text {
         font-weight: 500;
         font-size: 25px;
         font-family: $lato;
-        color: $purple;
+        color: $blue;
     }
 }
 
@@ -262,10 +259,10 @@ html, body {
 //  -----------------------------
 
 .section {
-    border: 1px solid $purple;
+    border: 1px solid $blue;
     border-radius: 0;
     height: 100%;
-    color: $purple;
+    color: $blue;
     font-weight: 500;
     margin: 0 0 15px 0;
 }
@@ -276,13 +273,13 @@ html, body {
 }
 
 .suggested-question__section-left {
-    background-color: $purple;
+    background-color: $blue;
     color: white;
 }
 
 .upcoming-contests__section {
     background-color: white;
-    color: $purple;
+    color: $blue;
     width: 100%;
 }
 
@@ -309,87 +306,11 @@ html, body {
 }
 
 //  -----------------------------
-// Collapsed CSS Definitions
-//  -----------------------------
-
-.collapse {
-    &.sidebar {
-        max-width: $collapsed;
-    }
-
-    & ~ .content {
-        max-width: calc(100% - #{$collapsed} - #{$collapse-button-width});
-    }
-
-    & ~ .collapse-button {
-        left: $collapsed;
-    }
-}
-
-.collapsed {
-    &.sidebar {
-        max-width: $collapsed;
-
-        .sidebar-nav {
-            padding: 10px 0 10px 0;
-        }
-
-        .user-dropdown {
-            padding: 30px 0 50px 0;
-            justify-content: center;
-        }
-
-        .sidebar-logo {
-            justify-content: center;
-            padding-left: 0;
-
-            .sidebar-logo__img {
-                margin-right: 0;
-            }
-        }
-    }
-
-    & ~ .content {
-        max-width: calc(100% - #{$collapsed} - #{$collapse-button-width});
-    }
-
-    & ~ .collapse-button {
-        left: $collapsed;
-
-        &::after {
-            content: '\f101';
-        }
-    }
-
-    .hide-on-collapsed {
-        display: none;
-    }
-
-    .expand-on-collapsed {
-        width: 100%;
-    }
-
-    .no-margin-on-collapsed {
-        margin: 0 !important;
-    }
-
-    .center-on-collapsed {
-        text-align: center;
-    }
-
-    .no-padding-on-collapsed {
-        padding: 0 !important;
-    }
-}
-
-
-
-//  -----------------------------
 // Text CSS Definitions
 //  -----------------------------
 
-.text-purple {
-    color: $purple;
+.text-blue {
+    color: $blue;
 }
 
 .text-light-gray {
@@ -412,8 +333,8 @@ html, body {
     }
 }
 
-.bg-purple {
-    background-color: $purple;
+.bg-blue {
+    background-color: $blue;
 }
 
 .bg-white {
@@ -431,7 +352,7 @@ html, body {
 
 .content-title {
     font-size: $content-title-font-size;
-    color: $purple;
+    color: $blue;
     font-family: $lato;
     margin: 0;
 }
@@ -449,7 +370,7 @@ html, body {
 }
 
 .horizontal-divider {
-    border-top: 1px solid $purple;
+    border-top: 1px solid $blue;
     margin-top: 0;
 }
 
@@ -474,7 +395,7 @@ html, body {
 //  -----------------------------
 
 .modal-button {
-    @extend .bg-purple;
+    @extend .bg-blue;
     @extend .text-white;
     border: none;
     height: 30px;
@@ -520,7 +441,7 @@ html, body {
     height: 100px;
     font-size: $large-box-font-size;
     font-family: $lato;
-    background-color: $purple;
+    background-color: $blue;
     color: $white;
     border: none;
     padding: 0 30px;
@@ -558,18 +479,18 @@ position: relative;
     }
 
     &:hover {
-        color: $purple;
+        color: $blue;
         background-color: $white;
         border: $large-box-inverted-border;
     }
 
     &.inverted {
-        color: $purple;
+        color: $blue;
         background-color: $white;
         border: $large-box-inverted-border;
 
         &:hover {
-            background-color: $purple;
+            background-color: $blue;
             color: $white;
             border: none;
         }
@@ -636,7 +557,7 @@ position: relative;
 
 .swal2-container{
     &.swal2-shown {
-        background-color: $purple-overlay !important;
+        background-color: $blue-overlay !important;
     }
 }
 
@@ -689,7 +610,7 @@ position: relative;
           margin: -20px 0 0;
           background: $white;
           box-shadow: 0 0 1px $dark-gray;
-          border: 3px solid $purple;
+          border: 3px solid $blue;
         }
         &:after {
           left: 7px;
@@ -697,7 +618,7 @@ position: relative;
           height: 16px;
           margin: -13px 0 0;
           opacity: 0;
-          background: $purple;
+          background: $blue;
           transform: translate3d(0, 0, 0);
           transition: opacity 0.3s ease-in;
         }
