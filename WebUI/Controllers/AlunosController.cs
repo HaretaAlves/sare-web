@@ -104,7 +104,7 @@ namespace WebUI.Controllers
                     aluno.TurmaID = model.TurmaID;
                     aluno.LastModifiedDate = DateTime.Now;
                     aluno.Status = "UPDATED";
-                    aluno.UserID = 1;
+                    aluno.UserID = SessionUtil.UserLogged.ID;
                     aluno.FotoID = 1;
 
                     this.alunoBusiness.Update(aluno);
@@ -117,7 +117,7 @@ namespace WebUI.Controllers
                     aluno.TurmaID = model.TurmaID;
                     aluno.LastModifiedDate = DateTime.Now;
                     aluno.Status = "ADDED";
-                    aluno.UserID = 1;
+                    aluno.UserID = SessionUtil.UserLogged.ID;
                     aluno.FotoID = 1;
 
                     this.alunoBusiness.Add(aluno);

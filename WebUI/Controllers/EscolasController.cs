@@ -88,7 +88,7 @@ namespace WebUI.Controllers
                     escola.Nome = model.Nome;
                     escola.LastModifiedDate = DateTime.Now;
                     escola.Status = "UPDATED";
-                    escola.UserID = 1;
+                    escola.UserID = SessionUtil.UserLogged.ID;
 
                     this.escolaBusiness.Update(escola);
                 }
@@ -98,7 +98,7 @@ namespace WebUI.Controllers
                     escola.Nome = model.Nome;
                     escola.LastModifiedDate = DateTime.Now;
                     escola.Status = "ADDED";
-                    escola.UserID = 1;
+                    escola.UserID = SessionUtil.UserLogged.ID;
 
                     this.escolaBusiness.Add(escola);
                 }
