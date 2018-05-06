@@ -27,14 +27,14 @@
                         <img class="sidebar-logo__img" src="~/Content/Images/logo.png" alt="sare-logo">
                     </div>
 
-                    <form class="form-login form-horizontal" method="post" action="/App/Login/" accept-charset="UTF-8">
+                     <form class="form-login form-horizontal" method="post" action="/App/Login/" accept-charset="UTF-8">
                         @Html.AntiForgeryToken()
                         <h3 class="badge badge-important text-center"></h3>
 
                         <div>
-                            <input class="form-control" type="text" id="username" name="username" placeholder="Usuário" value="admin" required autofocus>
+                            <input class="form-control" type="text" id="username" name="login" placeholder="Usuário" value="admin" required autofocus>
 
-                            <input class="form-control" type="password" id="password" name="password" placeholder="Senha" value="123456" required>
+                            <input class="form-control" type="password" id="password" name="senha" placeholder="Senha" value="123456" required>
                         </div>
 
                         <button type="submit" name="submit" class="btn btn-lg btn-block">Entrar</button>
