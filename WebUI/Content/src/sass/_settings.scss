@@ -8,6 +8,7 @@
 //  -----------------------------
 $purple-overlay: rgba(60, 72, 89, 0.7);
 $purple: #3F599C;
+$blue: #337ccb;
 $light-gray: #bebebe;
 $dark-gray: #3C4859;
 $white: white;
@@ -47,11 +48,17 @@ $small-font-size: 16px;
 //  -----------------------------
 
 $lato: 'Lato Regular';
+$roboto: 'Roboto Regular';
 $FontAwesome: 'FontAwesome';
 
 @font-face {
     font-family: 'Lato Regular';
     src: url('../fonts/Lato-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url('../fonts/Roboto-Regular.ttf');
 }
 
 @font-face {

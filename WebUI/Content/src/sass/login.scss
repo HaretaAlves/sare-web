@@ -1,6 +1,4 @@
 .login-page {
-    font-family: "FjallaOne Regular";
-    padding-top: 200px;
 
     .hide {
         display: none;
@@ -19,22 +17,19 @@
         align-items: center;
         margin-bottom: 25px;
         margin-top: 20px;
-
-        .sidebar-logo__text {
-            font-size: 30px;
-            margin-right: 30px;
-        }
     }
 
     .button-group {
         display: flex;
         justify-content: space-between;
     }
+
     .btn {
-        background-color: #3F599C; 
-        border-color: #424f63; 
+        background-color: #337ccb;
         color: white;
+        text-transform: uppercase;
         border-radius: 0px;
+        border: 0;
     }
 
     .btn-block {
