@@ -132,12 +132,14 @@
     <Content Include="Content\gallery-lightbox\ekko-lightbox.js" />
     <Content Include="Content\gallery-lightbox\ekko-lightbox.min.js" />
     <Content Include="Content\Images\BG-3.png" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\success_icon.png" />
     <Content Include="Content\Images\Warning.png" />
+    <Content Include="Content\jquery.confirm.min.js" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.js" />
-    <Content Include="Content\src\fonts\fa-solid-900.svg" />
+    <Content Include="Content\dist\fonts\fa-solid-900.svg" />
     <Content Include="Global.asax" />
     <Content Include="GoogleMaps.LocationServices.readme.txt" />
     <Content Include="gulpfile.js" />
@@ -201,7 +203,8 @@
     <Content Include="Content\src\sass\main.scss" />
     <Content Include="Content\src\sass\_settings.scss" />
     <Content Include="package.json" />
-    <Content Include="Content\src\fonts\Lato-Regular.ttf" />
+    <Content Include="Content\dist\fonts\Lato-Regular.ttf" />
+    <Content Include="Content\dist\fonts\Roboto-Regular.ttf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -7,73 +7,95 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Bruno Paiva - bspaiva@hotmail.com">
 
-    <title>Autenticação - Admin Boana Jeans</title>
+    <title>SARE Web - Autenticação</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/content/dist/css/login.css" rel="stylesheet">
+    <link href="/content/dist/css/main.css" rel="stylesheet">
 </head>
 
-<body style="background-image: url('/Content/Images/BG-3.png'); background-repeat: repeat; background-attachment: fixed; background-position: center;">
+<body>
 
-    <div class="container" style="margin-top:100px;">
+    <div class="login-page h-100">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-sm-offset-4 col-sm-4 bg-white box-shadow">
+                    <div class="sidebar-logo">
+                        <img class="sidebar-logo__img" src="~/Content/Images/logo.png" alt="sare-logo">
+                    </div>
 
-        <form method="post" action="/App/Login/" class="form-signin stitched" role="form">
-            @Html.AntiForgeryToken()
-            <h2 class="form-signin-heading">Autenticação</h2>
-
-            <div class="form-group input-group">
-                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                <input name="login" type="text" class="form-control" value="admin" placeholder="Usuário" required autofocus />
-            </div>
-
-            <div class="form-group input-group">
-                <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-                <input name="senha" type="password" class="form-control" value="123456" placeholder="Senha" required />
-            </div>
-
-            <div class="row form-group" style="margin-right:0px;">
-                <a href="#" data-toggle="modal" data-target="#remember" class="pull-left" style="margin-left:20px;margin-top:13px; display:none">Esqueci minha senha</a>
-                <button class="btn btn-lg btn-primary pull-right" type="submit">Entrar</button>
-            </div>
-
-            <!-- Start feedback message code -->
-
-            @RenderPage("~/Views/Shared/_Messages.cshtml")
-
-            <!-- End feedback message code -->
-
-        </form>
-
-        <!-- Modal -->
-        <div class="modal fade" id="remember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="/Login/EsqueciSenha/" method="post">
+                    <form class="form-login form-horizontal" method="post" action="/App/Login/" accept-charset="UTF-8">
                         @Html.AntiForgeryToken()
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Digite seu e-mail para receber a senha</h4>
+                        <h3 class="badge badge-important text-center"></h3>
+
+                        <div>
+                            <input class="form-control" type="text" id="username" name="username" placeholder="Usuário" value="admin" required autofocus>
+
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Senha" value="123456" required>
                         </div>
-                        <div class="modal-body">
 
-                            <div class="form-group">
+                        <button type="submit" name="submit" class="btn btn-lg btn-block">Entrar</button>
 
-                                <label>E-Mail</label>
-                                <input type="email" name="rememberemail" id="rememberemail" required class="form-control" />
+                        @*<div class="btn btn-lg btn-block show-signup">Cadastrar-se</div>*@
 
-                            </div>
+                        <!-- Start feedback message code -->
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                        </div>
+                        @RenderPage("~/Views/Shared/_Messages.cshtml")
+
+                        <!-- End feedback message code -->
+
                     </form>
+
+                    @*<form class="form-signup form-horizontal hide" method="post" action="/signup" accept-charset="UTF-8">
+                        <div>
+                            <input class="form-control" type="text" id="firstName" name="firstName" placeholder="Nome" autofocus>
+
+                            <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Sobrenome">
+
+                            <input class="form-control" type="email" id="newEmail" name="newEmail" placeholder="Usuário">
+
+                            <input class="form-control" type="password" id="newPassword" name="newPassword" placeholder="Senha">
+                        </div>
+                        <div class="button-group">
+                            <a class="btn btn-lg back-tologin">Voltar</a>
+                            <button type="submit" name="submit" class="btn btn-lg">Cadastrar</button>
+                        </div>
+
+                    </form>*@
+
+
+                    <!-- Modal -->
+                    @*<div class="modal fade" id="remember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="/Login/EsqueciSenha/" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Digite seu e-mail para receber a senha</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+
+                                            <label>E-Mail</label>
+                                            <input type="email" name="rememberemail" id="rememberemail" required class="form-control" />
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>*@
+
                 </div>
             </div>
         </div>
@@ -85,6 +107,18 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/content/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Other scripts -->
+    <script>
+        $('.show-signup').on('click', function () {
+            $('.form-login').addClass('hide');
+            $('.form-signup').removeClass('hide');
+        });
+        $('.back-tologin').on('click', function () {
+            $('.form-signup').addClass('hide');
+            $('.form-login').removeClass('hide');
+        });
+    </script>
 
 </body>
 </html>
