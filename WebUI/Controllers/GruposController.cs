@@ -124,7 +124,7 @@ namespace WebUI.Controllers
                     grupo.Nome = model.Nome;
                     grupo.LastModifiedDate = DateTime.Now;
                     grupo.Status = "UPDATED";
-                    grupo.UserID = 1;
+                    grupo.UserID = SessionUtil.UserLogged.ID;
 
                     grupo.Aluno1ID = model.Aluno1ID;
                     grupo.Aluno2ID = model.Aluno2ID;
@@ -142,7 +142,7 @@ namespace WebUI.Controllers
                     grupo.Nome = model.Nome;
                     grupo.LastModifiedDate = DateTime.Now;
                     grupo.Status = "ADDED";
-                    grupo.UserID = 1;
+                    grupo.UserID = SessionUtil.UserLogged.ID;
 
                     grupo.Aluno1ID = model.Aluno1ID;
                     grupo.Aluno2ID = model.Aluno2ID;

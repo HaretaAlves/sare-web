@@ -94,7 +94,7 @@ namespace WebUI.Controllers
                     turma.EscolaID = model.EscolaID;
                     turma.LastModifiedDate = DateTime.Now;
                     turma.Status = "UPDATED";
-                    turma.UserID = 1;
+                    turma.UserID = SessionUtil.UserLogged.ID;
 
                     this.turmaBusiness.Update(turma);
                 }
@@ -105,7 +105,7 @@ namespace WebUI.Controllers
                     turma.EscolaID = model.EscolaID;
                     turma.LastModifiedDate = DateTime.Now;
                     turma.Status = "ADDED";
-                    turma.UserID = 1;
+                    turma.UserID = SessionUtil.UserLogged.ID;
 
                     this.turmaBusiness.Add(turma);
                 }
