@@ -2,6 +2,7 @@
 using Domain.Extensions;
 using Domain.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using WebUI.Utils;
@@ -19,11 +20,13 @@ namespace WebUI.Controllers
 
         private AlunoBusiness alunoBusiness = null;
         private TurmaBusiness turmaBusiness = null;
+        private EscolaBusiness escolaBusiness = null;
 
         public AlunosController()
         {
             this.alunoBusiness = new AlunoBusiness();
             this.turmaBusiness = new TurmaBusiness();
+            this.escolaBusiness = new EscolaBusiness();
         }
 
         public ActionResult Index()
@@ -44,7 +47,8 @@ namespace WebUI.Controllers
         {
             var model = new AlunoViewModel();
 
-            model.Turmas = this.turmaBusiness.ListAll().ToList();
+            model.Turmas = new List<TurmaModel>();
+            model.Escolas = this.escolaBusiness.ListAll().ToList();
             return View(model);
         }
 
@@ -58,9 +62,15 @@ namespace WebUI.Controllers
             model.Nome = entity.Nome;
             model.DataNascimento = entity.DataNascimento;
             model.LastModifiedDate = entity.LastModifiedDate;
-            model.Turmas = this.turmaBusiness.ListAll().ToList();
             model.TurmaID = entity.TurmaID;
-            model.TurmaSelecionada = model.Turmas.Where(x => x.ID == model.TurmaID).FirstOrDefault();
+            model.TurmaSelecionada = this.turmaBusiness.GetById(model.TurmaID);
+
+            model.Escolas = this.escolaBusiness.ListAll().ToList();
+            model.EscolaID = model.TurmaSelecionada.EscolaID;
+            model.EscolaSelecionada = model.Escolas.Where(x => x.ID == model.EscolaID).FirstOrDefault();
+
+            model.Turmas = this.turmaBusiness.ListByEscolaID(model.EscolaID).ToList();           
+
             model.Status = entity.Status;
 
             return View(model);
@@ -145,5 +155,30 @@ namespace WebUI.Controllers
             }
         }
         
+        [HttpPost]
+        public JsonResult TurmasPorEscola(string escolaID)
+        {
+            try
+            {
+                int id;
+                int.TryParse(escolaID, out id);
+                var list = this.ListTurmasByEscolaID(id);
+
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        public List<TurmaModel> ListTurmasByEscolaID(int escolaID)
+        {
+            var listaTurmas = this.turmaBusiness.ListByEscolaID(escolaID).ToList();
+            return listaTurmas;
+        }
+
+
     }
 }

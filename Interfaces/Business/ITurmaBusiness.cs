@@ -10,5 +10,7 @@ namespace Interfaces.Business
     public interface ITurmaBusiness : IBusinessBase<TurmaModel>
     {
         IQueryable<TurmaModel> ListAllByNome(string nome);
+
+        IQueryable<TurmaModel> ListByEscolaID(int escolaID);
     }
 }

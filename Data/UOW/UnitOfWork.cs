@@ -23,6 +23,9 @@ namespace Data.UOW
         public UnitOfWork()
         {
             this.CreateContextDB();
+            this._dbSSPContext.Configuration.ProxyCreationEnabled = false;
+            this._dbSSPContext.Configuration.LazyLoadingEnabled = true;
+            this._dbSSPContext.Configuration.ValidateOnSaveEnabled = false;
         }
 
         private void CreateContextDB()

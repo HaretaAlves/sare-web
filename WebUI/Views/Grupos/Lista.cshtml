@@ -109,8 +109,8 @@
                         foreach (var item in Model.Grupos)
                         {
                             <tr>
-                                <td style="text-align: center;"><i class="glyphicon glyphicon-remove confirmDelete" data-action="/Grupos/Excluir/@item.ID" style="cursor:pointer;"></i></td>
-                                <td style="text-align: center;"><span onclick="location.href='/Grupos/Novo/@item.ID'" class="glyphicon glyphicon-pencil" style="cursor:pointer;" /></td>
+                                <td style="text-align: center;"><i class="glyphicon glyphicon-remove confirmDelete" data-id="@item.ID" data-action="/Grupos/Excluir/@item.ID" style="cursor:pointer;"></i></td>
+                                <td style="text-align: center;"><span onclick="location.href='/Grupos/Alterar/@item.ID'" class="glyphicon glyphicon-pencil" style="cursor:pointer;" /></td>
                                 <td>@item.Nome</td>
                             </tr>
                         }

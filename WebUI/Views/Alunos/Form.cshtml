@@ -20,8 +20,17 @@
         <div class="row">
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
+                <label>*Escola</label>
+                @Html.DropDownListFor(c => c.EscolaID, new SelectList(Model.Escolas.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { @Id = "escolasList", required = "required", @onchange = "ListTurmasByEscolaID()" })
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
                 <label>*Turma</label>
-                @Html.DropDownListFor(c => c.TurmaID, new SelectList(Model.Turmas.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { required = "required" })
+                @Html.DropDownListFor(c => c.TurmaID, new SelectList(Model.Turmas.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { @Id = "turmasList", required = "required" })
             </div>
 
         </div>
@@ -34,7 +43,7 @@
                 @Html.ValidationMessageFor(x => x.DataNascimento, "", new { @id = "DataNascimento" })
             </div>
 
-        </div>        
+        </div>
 
     </div>
     <div class="col-md-6">
@@ -43,3 +52,40 @@
     </div>
 
 </div>
+
+
+@{
+    <script type="text/javascript">
+
+        function ListTurmasByEscolaID() {
+            var selected = $("#escolasList option:selected").val();
+            $.ajax({
+                url: '/Alunos/TurmasPorEscola/',
+                type: "POST",
+                data: JSON.stringify({ 'escolaID': selected }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function (result) {
+                    clearCascadeEdit();
+                    console.log(result);
+                    var options = $("#turmasList");
+                    options.append($("<option />").val("").text("Selecione"));
+                    $.each(result, function () {
+                        options.append($("<option />").val(this.ID).text(this.Nome));
+                    });
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+        }
+
+        function clearCascadeEdit() {
+            $("#turmasList").empty();
+        }
+
+    </script>
+}
+

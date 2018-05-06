@@ -21,8 +21,17 @@
         <div class="row">
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
+                <label>*Escola</label>
+                @Html.DropDownListFor(c => c.EscolaID, new SelectList(Model.Escolas.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { @Id = "escolasList", required = "required", @onchange = "ListTurmasByEscolaID()" })
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
                 <label>*Turma</label>
-                @Html.DropDownListFor(c => c.TurmaID, new SelectList(Model.Turmas.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { required = "required" })
+                @Html.DropDownListFor(c => c.TurmaID, new SelectList(Model.Turmas.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { @Id = "turmasList", required = "required", @onchange = "ListAlunosByTurmaID()" })
             </div>
 
         </div>
@@ -31,7 +40,7 @@
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
                 <label>*Aluno 1</label>
-                @Html.DropDownListFor(c => c.Aluno1ID, new SelectList(Model.Alunos.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { required = "required" })
+                @Html.DropDownListFor(c => c.Aluno1ID, new SelectList(Model.Alunos.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { @Id = "alunos1List", required = "required" })
             </div>
 
         </div>
@@ -40,7 +49,7 @@
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
                 <label>*Aluno 2</label>
-                @Html.DropDownListFor(c => c.Aluno2ID, new SelectList(Model.Alunos.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { required = "required" })
+                @Html.DropDownListFor(c => c.Aluno2ID, new SelectList(Model.Alunos.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { @Id = "alunos2List", required = "required" })
             </div>
 
         </div>
@@ -49,7 +58,7 @@
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
                 <label>*Aluno 3</label>
-                @Html.DropDownListFor(c => c.Aluno3ID, new SelectList(Model.Alunos.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { required = "required" })
+                @Html.DropDownListFor(c => c.Aluno3ID, new SelectList(Model.Alunos.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { @Id = "alunos3List", required = "required" })
             </div>
 
         </div>
@@ -58,7 +67,7 @@
 
             <div class="form-group col-md-12 @if (!ViewData.ModelState.IsValidField("Nome")) { @Html.Raw("has-error") }">
                 <label>*Aluno 4</label>
-                @Html.DropDownListFor(c => c.Aluno4ID, new SelectList(Model.Alunos.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { required = "required" })
+                @Html.DropDownListFor(c => c.Aluno4ID, new SelectList(Model.Alunos.OrderBy(x => x.Nome), "ID", "Nome"), "Selecione", new { @Id = "alunos4List", required = "required" })
             </div>
 
         </div>
@@ -69,3 +78,87 @@
     </div>
 
 </div>
+
+@{
+    <script type="text/javascript">
+
+        function ListTurmasByEscolaID() {
+            var selected = $("#escolasList option:selected").val();
+            $.ajax({
+                url: '/Grupos/TurmasPorEscola/',
+                type: "POST",
+                data: JSON.stringify({ 'escolaID': selected }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function (result) {
+                    $("#turmasList").empty();
+                    $("#alunos1List").empty();
+                    $("#alunos2List").empty();
+                    $("#alunos3List").empty();
+                    $("#alunos4List").empty();
+                    console.log(result);
+                    var options = $("#turmasList");
+                    options.append($("<option />").val("").text("Selecione"));
+                    $.each(result, function () {
+                        options.append($("<option />").val(this.ID).text(this.Nome));
+                    });
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+        }
+
+        function ListAlunosByTurmaID() {
+            var selected = $("#turmasList option:selected").val();
+            $.ajax({
+                url: '/Grupos/AlunosByTurmas/',
+                type: "POST",
+                data: JSON.stringify({ 'turmaID': selected }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function (result) {
+                    $("#alunos1List").empty();
+                    $("#alunos2List").empty();
+                    $("#alunos3List").empty();
+                    $("#alunos4List").empty();
+                    console.log(result);
+                    var options = $("#alunos1List");
+                    options.append($("<option />").val("").text("Selecione"));
+                    $.each(result, function () {
+                        options.append($("<option />").val(this.ID).text(this.Nome));
+                    });
+
+                    var options2 = $("#alunos2List");
+                    options2.append($("<option />").val("").text("Selecione"));
+                    $.each(result, function () {
+                        options2.append($("<option />").val(this.ID).text(this.Nome));
+                    });
+
+                    var options3 = $("#alunos3List");
+                    options3.append($("<option />").val("").text("Selecione"));
+                    $.each(result, function () {
+                        options3.append($("<option />").val(this.ID).text(this.Nome));
+                    });
+
+                    var options4 = $("#alunos4List");
+                    options4.append($("<option />").val("").text("Selecione"));
+                    $.each(result, function () {
+                        options4.append($("<option />").val(this.ID).text(this.Nome));
+                    });
+
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+        }
+
+
+    </script>
+}
+

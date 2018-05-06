@@ -81,6 +81,19 @@ namespace Business
             }
         }
 
+        public IQueryable<TurmaModel> ListByEscolaID(int escolaID)
+        {
+            try
+            {
+                var results = this.UOW.Turmas.ListByEscolaID(escolaID);
+                return results;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public IQueryable<TurmaModel> ListAllByNome(string nome)
         {
             try
