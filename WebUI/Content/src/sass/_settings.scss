@@ -6,12 +6,12 @@
 //  -----------------------------
 // Color Definitions
 //  -----------------------------
-$purple-overlay: rgba(60, 72, 89, 0.7);
-$purple: #3F599C;
-$blue: #337ccb;
+$blue-overlay: #3281d6;
+$blue: #327ccb;
 $light-gray: #bebebe;
 $dark-gray: #3C4859;
 $white: white;
+$black: black;
 $bg-color: #f2f2f2;
 $locked-color: #5fc0d1;
 
@@ -20,7 +20,7 @@ $locked-color: #5fc0d1;
 //  -----------------------------
 $button-border: 1px solid $light-gray;
 $quiz-stat-border: 1px solid $light-gray;
-$large-box-inverted-border: 1px solid $purple;
+$large-box-inverted-border: 1px solid $blue;
 
 //  -----------------------------
 // Size Definitions
