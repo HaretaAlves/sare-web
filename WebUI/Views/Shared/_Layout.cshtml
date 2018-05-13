@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
-    <title>@ViewBag.Title - Admin SARE</title>
+    <title>SARE Web Admin - @ViewBag.Title</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Font Awesome -->
+    <link href="/content/dist/css/fontawesome-all.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="/content/dist/css/main.css" rel="stylesheet">
 
@@ -22,74 +23,106 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" class="container-fluid">
+        <div class="row">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">SARE</a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @WebUI.Utils.SessionUtil.UserLogged.Nome <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="divider"></li>
-                        <li>
-                            <a href="~/App/Logout/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    @*<li class="active">
-        <a href="javascript:;" data-toggle="collapse" data-target="#cad"><i class="fa fa-fw fa-edit"></i> Cadastros <i class="fa fa-fw fa-caret-down"></i></a>
-        <ul id="cad" class="collapse">*@
-                    <li class="active">
-                        <a href="/Usuarios/"><i class="fa fa-fw fa-edit"></i> Usuários</a>
+            <!-- Sidemenu -->
+            <nav class="col-md-2 d-none d-md-block sidebar bg-white expanded">
+
+                <!-- Account info -->
+                <div class="btn-group w-100 dropright account-dropdown-wrapper">
+                    <button type="button" class="w-100 dropdown-toggle dropdown-button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                        <div class="media user-dropdown">
+                            <img class="mr-3" src="~/Content/Images/avatar-male.png" alt="Avatar Image">
+                            <div class="media-body text-left">
+                                <h5 class="mb-0 text-blue username-text">Usuário</h5>
+                            </div>
+                        </div>
+                    </button>
+                    <div class="dropdown-menu account-dropdown rounded-0 text-uppercase">
+                        <a class="dropdown-item" href="~/App/Logout/">
+                            <i class="fas fa-sign-out-alt pr-3 py-2"></i>Sign Out
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Navigation -->
+
+                <ul class="nav flex-column sidebar-nav align-middle">
+                    <li class="nav-item">
+                        <a class="nav-title" href="/Usuarios/">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Cadastros</span>
+                        </a>
                     </li>
-                    <li>
-                        <a href="/Escolas/"><i class="fa fa-fw fa-edit"></i> Escolas</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Usuarios/">
+                            <i class="fas fa-angle-right"></i>
+                            <span>Usuários</span>
+                        </a>
                     </li>
-                    <li>
-                        <a href="/Turmas/"><i class="fa fa-fw fa-edit"></i> Turmas</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Escolas/">
+                            <i class="fas fa-angle-right"></i>
+                            <span>Escolas</span>
+                        </a>
                     </li>
-                    <li>
-                        <a href="/Alunos/"><i class="fa fa-fw fa-edit"></i> Alunos</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Turmas/">
+                            <i class="fas fa-angle-right"></i>
+                            <span>Turmas</span>
+                        </a>
                     </li>
-                    <li>
-                        <a href="/Grupos/"><i class="fa fa-fw fa-edit"></i> Grupos</a>
-                    </li>                    
-                    @*</ul>
-        </li>*@
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Alunos/">
+                            <i class="fas fa-angle-right"></i>
+                            <span>Alunos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Grupos/">
+                            <i class="fas fa-angle-right"></i>
+                            <span>Grupos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-title" href="#">
+                            <i class="fas fa-align-left"></i>
+                            <span>Ver avaliações</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-title" href="#">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Gráficos</span>
+                        </a>
+                    </li>
                 </ul>
+
+                <!-- SARE logo -->
+                <div class="sidebar-logo fixed-bottom position-absolute">
+                    <img class="sidebar-logo__img" src="~/Content/Images/logo.png" alt="sare-logo">
+                </div>
+
+            <!-- /nav -->
+            </nav>
+
+            <div id="page-wrapper" class="col-md-12 ml-sm-auto col-lg-12 content">
+
+                <div class="content__app">
+
+                    @RenderBody()
+
+                </div>
+                <!-- /.container-fluid -->
+
             </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-
-                @RenderBody()
-
-            </div>
-            <!-- /.container-fluid -->
-
+            <!-- /#page-wrapper -->
         </div>
-        <!-- /#page-wrapper -->
-
+        <!-- /.row -->
     </div>
-    <!-- /#wrapper -->
+    <!-- /#wrapper-container -->
 
     <form id="__AjaxAntiForgeryForm" action="#" method="post">@Html.AntiForgeryToken()</form>
 

@@ -36,9 +36,9 @@ html, body {
     z-index: 100;
     padding: 0;
     box-shadow: 0 5px 15px rgba(0,0,0,0.19), 0 0 5px rgba(0,0,0,0.23);
-    transition:max-width .3s linear;   
-    -moz-transition:max-width .3s linear;   
-    -webkit-transition:max-width .3s linear;
+    transition: max-width .3s linear;
+    -moz-transition: max-width .3s linear;
+    -webkit-transition: max-width .3s linear;
     max-width: $expanded;
     overflow: hidden;
     white-space: nowrap;
@@ -47,13 +47,26 @@ html, body {
         font-size: 16px;
         padding: 10px 10px 10px 15px;
 
+        .nav-title {
+            display: block;
+            color: $black;
+            letter-spacing: 0.1em;
+            padding: 0.7rem 0;
+            text-decoration: none;
+
+            i {
+                color: $blue;
+                font-size: 25px;
+            }
+        }
+
         a {
-            color: $light-gray;
+            color: $black;
             font-family: $lato;
 
             &.active,
             &:hover {
-                color: $purple;
+                color: $blue;
             }
         }
 
@@ -81,7 +94,7 @@ html, body {
 
 
         .username-text {
-            margin-top: 5px;
+            margin-top: 15px;
         }
 
         img {
@@ -147,21 +160,18 @@ html, body {
     height: 120px;
     display: flex;
     align-items: center;
-    justify-content: start;
-    padding-left: 20px;
+    justify-content: center;
 
     .sidebar-logo__img {
         flex-grow:0;
         flex-shrink:0;
-        width: 80px;
-        margin-right: 20px;
     }
 
     .sidebar-logo__text {
         font-weight: 500;
         font-size: 25px;
         font-family: $lato;
-        color: $purple;
+        color: $blue;
     }
 }
 
@@ -262,10 +272,10 @@ html, body {
 //  -----------------------------
 
 .section {
-    border: 1px solid $purple;
+    border: 1px solid $blue;
     border-radius: 0;
     height: 100%;
-    color: $purple;
+    color: $blue;
     font-weight: 500;
     margin: 0 0 15px 0;
 }
@@ -276,13 +286,13 @@ html, body {
 }
 
 .suggested-question__section-left {
-    background-color: $purple;
+    background-color: $blue;
     color: white;
 }
 
 .upcoming-contests__section {
     background-color: white;
-    color: $purple;
+    color: $blue;
     width: 100%;
 }
 
@@ -309,87 +319,11 @@ html, body {
 }
 
 //  -----------------------------
-// Collapsed CSS Definitions
-//  -----------------------------
-
-.collapse {
-    &.sidebar {
-        max-width: $collapsed;
-    }
-
-    & ~ .content {
-        max-width: calc(100% - #{$collapsed} - #{$collapse-button-width});
-    }
-
-    & ~ .collapse-button {
-        left: $collapsed;
-    }
-}
-
-.collapsed {
-    &.sidebar {
-        max-width: $collapsed;
-
-        .sidebar-nav {
-            padding: 10px 0 10px 0;
-        }
-
-        .user-dropdown {
-            padding: 30px 0 50px 0;
-            justify-content: center;
-        }
-
-        .sidebar-logo {
-            justify-content: center;
-            padding-left: 0;
-
-            .sidebar-logo__img {
-                margin-right: 0;
-            }
-        }
-    }
-
-    & ~ .content {
-        max-width: calc(100% - #{$collapsed} - #{$collapse-button-width});
-    }
-
-    & ~ .collapse-button {
-        left: $collapsed;
-
-        &::after {
-            content: '\f101';
-        }
-    }
-
-    .hide-on-collapsed {
-        display: none;
-    }
-
-    .expand-on-collapsed {
-        width: 100%;
-    }
-
-    .no-margin-on-collapsed {
-        margin: 0 !important;
-    }
-
-    .center-on-collapsed {
-        text-align: center;
-    }
-
-    .no-padding-on-collapsed {
-        padding: 0 !important;
-    }
-}
-
-
-
-//  -----------------------------
 // Text CSS Definitions
 //  -----------------------------
 
-.text-purple {
-    color: $purple;
+.text-blue {
+    color: $blue;
 }
 
 .text-light-gray {
@@ -412,8 +346,8 @@ html, body {
     }
 }
 
-.bg-purple {
-    background-color: $purple;
+.bg-blue {
+    background-color: $blue;
 }
 
 .bg-white {
@@ -431,7 +365,7 @@ html, body {
 
 .content-title {
     font-size: $content-title-font-size;
-    color: $purple;
+    color: $blue;
     font-family: $lato;
     margin: 0;
 }
@@ -449,7 +383,7 @@ html, body {
 }
 
 .horizontal-divider {
-    border-top: 1px solid $purple;
+    border-top: 1px solid $blue;
     margin-top: 0;
 }
 
@@ -474,7 +408,7 @@ html, body {
 //  -----------------------------
 
 .modal-button {
-    @extend .bg-purple;
+    @extend .bg-blue;
     @extend .text-white;
     border: none;
     height: 30px;
@@ -520,7 +454,7 @@ html, body {
     height: 100px;
     font-size: $large-box-font-size;
     font-family: $lato;
-    background-color: $purple;
+    background-color: $blue;
     color: $white;
     border: none;
     padding: 0 30px;
@@ -558,18 +492,18 @@ position: relative;
     }
 
     &:hover {
-        color: $purple;
+        color: $blue;
         background-color: $white;
         border: $large-box-inverted-border;
     }
 
     &.inverted {
-        color: $purple;
+        color: $blue;
         background-color: $white;
         border: $large-box-inverted-border;
 
         &:hover {
-            background-color: $purple;
+            background-color: $blue;
             color: $white;
             border: none;
         }
@@ -636,7 +570,7 @@ position: relative;
 
 .swal2-container{
     &.swal2-shown {
-        background-color: $purple-overlay !important;
+        background-color: $blue-overlay !important;
     }
 }
 
@@ -689,7 +623,7 @@ position: relative;
           margin: -20px 0 0;
           background: $white;
           box-shadow: 0 0 1px $dark-gray;
-          border: 3px solid $purple;
+          border: 3px solid $blue;
         }
         &:after {
           left: 7px;
@@ -697,7 +631,7 @@ position: relative;
           height: 16px;
           margin: -13px 0 0;
           opacity: 0;
-          background: $purple;
+          background: $blue;
           transform: translate3d(0, 0, 0);
           transition: opacity 0.3s ease-in;
         }
@@ -708,4 +642,116 @@ position: relative;
             }
         }
       }
+}
+
+//  -----------------------------
+// Content page stylings
+//  -----------------------------
+
+
+h1.page-header {
+    padding-top: 120px;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    color: $blue;
+    font-size: 2rem;
+    border-bottom: 1px solid $blue;
+
+    i {
+        font-size: 22px;
+    }
+}
+
+#LoadingModal {
+     button {
+        background: $blue;
+        border: $white;
+        color: $white;
+    }
+}
+
+form {
+    .form-group {
+        margin-bottom: 30px;
+    }
+
+    .input-search {
+        display: inline-block;
+        width: 300px;
+    }
+
+    button {
+        background: $blue;
+        color: $white;
+        min-width: 120px;
+
+        i {
+            margin-right: 5px;
+        }
+
+        &:hover, &:active, &:focus {
+            background: $white;
+            color: $blue;
+            border: 1px solid $blue;
+        }
+    }
+
+    .btn-search {
+        margin-left: 10px;
+    }
+
+    .btn-clear {
+        margin-right: 10px;
+    }
+
+    .selectWrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #bbb;
+        border-radius: 2px;
+        background: #FFFFFF url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2211%22%20height%3D%2211%22%20viewBox%3D%220%200%2011%2011%22%3E%3Cpath%20d%3D%22M4.33%208.5L0%201L8.66%201z%22%20fill%3D%22%23007bff%22%2F%3E%3C%2Fsvg%3E') right 13px center no-repeat;
+    }
+
+    .selectWrapper select {
+        padding: 12px 40px 12px 20px;
+        font-size: 18px;
+        line-height: 18px;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+        -moz-appearance: none;
+        text-indent: 0.01px;
+        text-overflow: ellipsis;
+    }
+
+    .row.align-items-center .text-right {
+        margin-bottom: 40px;
+    }
+
+    .form-birthdate input {
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+}
+
+table {
+    thead {
+        background: $blue;
+        color: $white;
+    }
 }
