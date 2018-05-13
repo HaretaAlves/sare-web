@@ -12,5 +12,7 @@ namespace Interfaces.Business
         IQueryable<AlunoModel> ListAllByNome(string nome);
 
         IQueryable<AlunoModel> ListByTurmaID(int turmaID);
+
+        List<AlunoModel> AddList(List<AlunoModel> list);
     }
 }
