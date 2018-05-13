@@ -10,5 +10,7 @@ namespace Interfaces.Business
     public interface IEscolaBusiness : IBusinessBase<EscolaModel>
     {
         IQueryable<EscolaModel> ListAllByNome(string nome);
+
+        List<EscolaModel> AddList(List<EscolaModel> list);
     }
 }

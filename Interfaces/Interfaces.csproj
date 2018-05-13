@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\IFotoBusiness.cs" />
     <Compile Include="Business\IGrupoBusiness.cs" />
     <Compile Include="Business\IBusinessBase.cs" />
     <Compile Include="Business\IEscolaBusiness.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Business\IUsuarioBusiness.cs" />
     <Compile Include="Business\ITurmaBusiness.cs" />
     <Compile Include="DAO\IAlunoDAO.cs" />
+    <Compile Include="DAO\IFotoDAO.cs" />
     <Compile Include="DAO\IGrupoDAO.cs" />
     <Compile Include="DAO\IUsuarioDAO.cs" />
     <Compile Include="IRepository.cs" />

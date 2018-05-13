@@ -10,5 +10,7 @@ namespace Interfaces.DAO
     public interface ITurmaDAO<T> : IRepository<T> where T : class
     {
         IQueryable<TurmaModel> ListByEscolaID(int escolaID);
+
+        TurmaModel GetByNome(string nome);
     }
 }

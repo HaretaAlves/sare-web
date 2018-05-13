@@ -18,6 +18,7 @@ namespace WebUI.Utils
         public const string LOGIN_DUPLICATED_EMAIL = "Usuário utilizado em mais de um registro. Contate o administrador.";
 
         public const string GENERIC_MSG_FORM_SUCCESS_SAVE = "Registro salvo com sucesso.";
+        public const string GENERIC_MSG_FORM_SUCCESS_SAVE_MANY_ITENS = "Registros salvos com sucesso.";
         public const string GENERIC_MSG_FORM_SUCCESS_ADD = "Registro cadastrado com sucesso.";
         public const string GENERIC_MSG_FORM_SUCCESS_UPDATE = "Registro alterado com sucesso.";
         public const string GENERIC_MSG_FORM_SUCCESS_DELETE = "Registro excluído com sucesso.";

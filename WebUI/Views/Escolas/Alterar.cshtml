@@ -39,7 +39,7 @@
 
 <!-- End feedback message code -->
 
-<form action="/Escolas/Save" method="post" role="form">
+<form action="/Escolas/Save" method="post" role="form" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
 
     @RenderPage("~/Views/Escolas/Form.cshtml")

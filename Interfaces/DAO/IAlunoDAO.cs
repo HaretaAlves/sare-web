@@ -10,5 +10,6 @@ namespace Interfaces.DAO
     public interface IAlunoDAO<T> : IRepository<T> where T : class
     {
         IQueryable<AlunoModel> ListByTurmaID(int turmaID);
+
     }
 }

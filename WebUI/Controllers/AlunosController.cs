@@ -3,7 +3,10 @@ using Domain.Extensions;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Transactions;
 using System.Web.Mvc;
 using WebUI.Utils;
 using WebUI.ViewModels;
@@ -21,12 +24,14 @@ namespace WebUI.Controllers
         private AlunoBusiness alunoBusiness = null;
         private TurmaBusiness turmaBusiness = null;
         private EscolaBusiness escolaBusiness = null;
+        private FotoBusiness fotoBusiness = null;
 
         public AlunosController()
         {
             this.alunoBusiness = new AlunoBusiness();
             this.turmaBusiness = new TurmaBusiness();
             this.escolaBusiness = new EscolaBusiness();
+            this.fotoBusiness = new FotoBusiness();
         }
 
         public ActionResult Index()
@@ -69,7 +74,10 @@ namespace WebUI.Controllers
             model.EscolaID = model.TurmaSelecionada.EscolaID;
             model.EscolaSelecionada = model.Escolas.Where(x => x.ID == model.EscolaID).FirstOrDefault();
 
-            model.Turmas = this.turmaBusiness.ListByEscolaID(model.EscolaID).ToList();           
+            model.Turmas = this.turmaBusiness.ListByEscolaID(model.EscolaID).ToList();
+
+            model.Foto = this.fotoBusiness.GetByAlunoId(model.ID);
+            model.FotoID = model.Foto != null ? model.Foto.ID : 0;
 
             model.Status = entity.Status;
 
@@ -105,7 +113,6 @@ namespace WebUI.Controllers
                     aluno.LastModifiedDate = DateTime.Now;
                     aluno.Status = "UPDATED";
                     aluno.UserID = SessionUtil.UserLogged.ID;
-                    aluno.FotoID = 1;
 
                     this.alunoBusiness.Update(aluno);
                 }
@@ -118,7 +125,6 @@ namespace WebUI.Controllers
                     aluno.LastModifiedDate = DateTime.Now;
                     aluno.Status = "ADDED";
                     aluno.UserID = SessionUtil.UserLogged.ID;
-                    aluno.FotoID = 1;
 
                     this.alunoBusiness.Add(aluno);
                 }
@@ -178,6 +184,123 @@ namespace WebUI.Controllers
             var listaTurmas = this.turmaBusiness.ListByEscolaID(escolaID).ToList();
             return listaTurmas;
         }
+
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Upload(int id, string nome)
+        {
+            using (var tran = new TransactionScope())
+            {
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var path = System.Web.HttpContext.Current.Server.MapPath("\\_uploads");
+                    var file = Request.Files[i];
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    string filename = string.Format("{0}_{1}.{2}", DateTime.Now.ToString("dd-MM-yyyy"), nome, file.FileName.Split('.')[1]);
+                    string fullname = string.Format("{0}\\{1}", path, filename);
+                    file.SaveAs(fullname);
+
+                    Bitmap img = new Bitmap(file.InputStream);
+                    int w = img.Width;
+                    int h = img.Height;
+                    if (w > h)
+                    {
+                        h = (h * 120 / w);
+                        w = 120;
+                    }
+                    else
+                    {
+                        w = (w * 120 / h); ;
+                        h = 120;
+                    }
+                    Image thumb = img.GetThumbnailImage(w, h, () => false, IntPtr.Zero);
+                    thumb.Save(fullname.Insert(fullname.LastIndexOf("."), "_thumb"));
+
+                    FotoModel foto = new FotoModel();
+                    foto.FotoUrl = filename;
+                    foto.Status = "ADDED";
+                    foto.LastModifiedDate = DateTime.Now;
+                    foto.AlunoID = id;
+
+                    this.fotoBusiness.Add(foto);
+                }
+
+                tran.Complete();
+            }
+
+            return RedirectToAction(ActionAlterar, new { id = id });
+        }
+
+        public ActionResult ImportItens()
+        {
+            ActionResult result = null;
+            var pathReader = "";
+
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        var path = System.Web.HttpContext.Current.Server.MapPath("\\_arquivosCsv");
+                        var file = Request.Files[i];
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        string filename = string.Format("{0}_{1}", DateTime.Now.ToString("yyyyMMdd"), file.FileName);
+                        string fullname = string.Format("{0}\\{1}", path, filename);
+                        file.SaveAs(fullname);
+
+                        pathReader = fullname;
+
+                    }
+                    tran.Complete();
+                }
+
+                using (var reader = new StreamReader(pathReader))
+                {
+                    List<AlunoModel> listaAlunos = new List<AlunoModel>();
+
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+
+                        if (!line.Contains("Cadastros de alunos") && !line.Contains("Nome;Data de Nascimento;Turma"))
+                        {
+                            var item = new AlunoModel();
+                            var values = line.Split(';');
+                            item.Nome = values[0];
+                            item.DataNascimento = DateTime.Parse(values[1]);
+                            item.TurmaID = this.turmaBusiness.GetByNome(values[2]).ID;
+                            item.LastModifiedDate = DateTime.Now;
+                            item.Status = "ADDED";
+                            item.UserID = SessionUtil.UserLogged.ID;
+
+                            listaAlunos.Add(item);
+                        }
+
+                    }
+
+                    this.alunoBusiness.AddList(listaAlunos);
+
+                }
+
+                TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_SAVE_MANY_ITENS;
+                result = RedirectToAction(ActionLista);
+            }
+            catch (Exception ex)
+            {
+                TempData[Constants.KEY_ERROR_MESSAGE] = ex.ToStringAll();
+            }
+
+            return result;
+        }
+
+
 
 
     }
