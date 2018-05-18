@@ -20,11 +20,7 @@ namespace Domain.Models
         public int TurmaID { get; set; }
         [ForeignKey("TurmaID")]
         public TurmaModel TurmaFK { get; set; }
-
-        public int FotoID { get; set; }
-        [ForeignKey("FotoID")]
-        public FotoModel FotoFK { get; set; }
-
+        
         public int UserID { get; set; }
         [ForeignKey("UserID")]
         public UsuarioModel UserFK { get; set; }

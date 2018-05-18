@@ -15,7 +15,8 @@ namespace Interfaces
         IEscolaDAO<EscolaModel> Escolas { get; }
         ITurmaDAO<TurmaModel> Turmas { get; }
         IUsuarioDAO<UsuarioModel> Usuarios { get; }
-        IAlunoDAO<AlunoModel> Alunos { get;  }
+        IAlunoDAO<AlunoModel> Alunos { get; }
         IGrupoDAO<GrupoModel> Grupos { get; }
+        IFotoDAO<FotoModel> Fotos { get; }
     }
 }

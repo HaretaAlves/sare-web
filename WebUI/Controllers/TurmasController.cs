@@ -3,7 +3,9 @@ using Domain.Extensions;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using WebUI.Utils;
@@ -141,5 +143,71 @@ namespace WebUI.Controllers
                 TempData[Constants.KEY_ERROR_MESSAGE] = ex.ToStringAll();
             }
         }
+
+        public ActionResult ImportItens()
+        {
+            ActionResult result = null;
+            var pathReader = "";
+
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        var path = System.Web.HttpContext.Current.Server.MapPath("\\_arquivosCsv");
+                        var file = Request.Files[i];
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        string filename = string.Format("{0}_{1}", DateTime.Now.ToString("yyyyMMdd"), file.FileName);
+                        string fullname = string.Format("{0}\\{1}", path, filename);
+                        file.SaveAs(fullname);
+
+                        pathReader = fullname;
+
+                    }
+                    tran.Complete();
+                }
+
+                using (var reader = new StreamReader(pathReader))
+                {
+                    List<TurmaModel> listaTurmas = new List<TurmaModel>();
+
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+
+                        if (!line.Contains("Cadastros de turmas") && !line.Contains("Nome;Escola"))
+                        {
+                            var item = new TurmaModel();
+                            var values = line.Split(';');
+                            item.Nome = values[0];
+                            item.EscolaID = this.escolaBusiness.GetByNome(values[1]).ID;
+                            item.LastModifiedDate = DateTime.Now;
+                            item.Status = "ADDED";
+                            item.UserID = SessionUtil.UserLogged.ID;
+
+                            listaTurmas.Add(item);
+                        }
+
+                    }
+
+                    this.turmaBusiness.AddList(listaTurmas);
+
+                }
+
+                TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_SAVE_MANY_ITENS;
+                result = RedirectToAction(ActionLista);
+            }
+            catch (Exception ex)
+            {
+                TempData[Constants.KEY_ERROR_MESSAGE] = ex.ToStringAll();
+            }
+
+            return result;
+        }
+
     }
 }

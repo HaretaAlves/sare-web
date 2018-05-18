@@ -19,6 +19,16 @@
         <h1 class="page-header">
             Turma <i class="fas fa-angle-right"></i> Nova
         </h1>
+
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-users"></i> <a href="/Turmas/Lista/">Turmas</a>
+            </li>
+
+            <li class="active">
+                <i class="fa fa-user"></i> Novo
+            </li>
+        </ol>
     </div>
 </div>
 <!-- /.row -->
@@ -32,6 +42,12 @@
     @Html.AntiForgeryToken()
 
     @RenderPage("~/Views/Turmas/Form.cshtml")
+
+    <div class="row col-md-12">
+
+        <button type="submit" class="btn btn-primary">Inserir</button>
+
+        <button type="reset" class="btn btn-default">Limpar</button>
 
     <div class="row align-items-center justify-content-center">
         <div class="col-md-6">

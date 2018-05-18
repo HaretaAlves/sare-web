@@ -14,5 +14,9 @@ namespace Domain.Models
         public string FotoUrl { get; set; }
         public string Status { get; set; }
         public DateTime LastModifiedDate { get; set; }
+
+        public int AlunoID { get; set; }
+        [ForeignKey("AlunoID")]
+        public AlunoModel AlunoFK { get; set; }
     }
 }

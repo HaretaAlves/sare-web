@@ -28,7 +28,7 @@
 
 <!-- End feedback message code -->
 
-<form action="/Alunos/Save" method="post" role="form">
+<form action="/Alunos/Save" method="post" role="form" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
 
     @RenderPage("~/Views/Alunos/Form.cshtml")
