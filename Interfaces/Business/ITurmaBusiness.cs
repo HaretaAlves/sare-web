@@ -12,5 +12,8 @@ namespace Interfaces.Business
         IQueryable<TurmaModel> ListAllByNome(string nome);
 
         IQueryable<TurmaModel> ListByEscolaID(int escolaID);
+
+        List<TurmaModel> AddList(List<TurmaModel> list);
+        
     }
 }

@@ -81,6 +81,41 @@ namespace Business
             }
         }
 
+        public List<TurmaModel> AddList(List<TurmaModel> list)
+        {
+            try
+            {
+                List<TurmaModel> listaItensAdicionados = new List<TurmaModel>();
+                foreach (var item in list)
+                {
+                    var turma = this.UOW.Turmas.Insert(item);
+                    listaItensAdicionados.Add(turma);
+                }
+                this.UOW.Commit();
+
+                return listaItensAdicionados;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        public TurmaModel GetByNome(string nome)
+        {
+            try
+            {
+                var turma = this.UOW.Turmas.GetByNome(nome);
+                return turma;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
         public IQueryable<TurmaModel> ListByEscolaID(int escolaID)
         {
             try

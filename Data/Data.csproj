@@ -53,12 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\FotoDAO.cs" />
     <Compile Include="DAO\GrupoDAO.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
-    <Compile Include="Migrations\201804270056022_initial.cs" />
-    <Compile Include="Migrations\201804270056022_initial.Designer.cs">
-      <DependentUpon>201804270056022_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201805131438345_initial.cs" />
+    <Compile Include="Migrations\201805131438345_initial.Designer.cs">
+      <DependentUpon>201805131438345_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="SARERepository.cs" />
     <Compile Include="SareWebContext.cs" />
@@ -96,8 +97,8 @@
     <Content Include="docs\MySqlTransaction.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804270056022_initial.resx">
-      <DependentUpon>201804270056022_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805131438345_initial.resx">
+      <DependentUpon>201805131438345_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

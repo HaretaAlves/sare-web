@@ -68,6 +68,40 @@ namespace Business
             }
         }
 
+        public EscolaModel GetByNome(string nome)
+        {
+            try
+            {
+                var escola = this.UOW.Escolas.GetByNome(nome);
+                return escola;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<EscolaModel> AddList(List<EscolaModel> list)
+        {
+            try
+            {
+                List<EscolaModel> listaItensAdicionados = new List<EscolaModel>();
+                foreach (var item in list)
+                {
+                    var escola = this.UOW.Escolas.Insert(item);
+                    listaItensAdicionados.Add(escola);
+                }
+                this.UOW.Commit();
+
+                return listaItensAdicionados;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
         public IQueryable<EscolaModel> ListAll()
         {
             try
