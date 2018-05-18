@@ -13,6 +13,7 @@
 */bin/
 */obj/
 */WebUI/_uploads
+*/WebUI/node_modules
 .vs/
 _publish*/
 _bk/
