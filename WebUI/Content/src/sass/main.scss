@@ -754,4 +754,12 @@ table {
         background: $blue;
         color: $white;
     }
+
+    .item-remove:hover {
+        color: $red;
+    }
+
+    .item-edit:hover {
+        color: $blue-overlay;
+    }
 }
