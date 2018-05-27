@@ -17,12 +17,16 @@ namespace Data.UOW
         private IUsuarioDAO<UsuarioModel> _usuarios;
         private IAlunoDAO<AlunoModel> _alunos;
         private IGrupoDAO<GrupoModel> _grupos;
+        private IFotoDAO<FotoModel> _fotos;
 
         private SareWebContext _dbSSPContext { get; set; }
 
         public UnitOfWork()
         {
             this.CreateContextDB();
+            this._dbSSPContext.Configuration.ProxyCreationEnabled = false;
+            this._dbSSPContext.Configuration.LazyLoadingEnabled = true;
+            this._dbSSPContext.Configuration.ValidateOnSaveEnabled = false;
         }
 
         private void CreateContextDB()
@@ -117,6 +121,18 @@ namespace Data.UOW
                     this._grupos = new GrupoDAO(this._dbSSPContext);
                 }
                 return this._grupos;
+            }
+        }
+
+        public IFotoDAO<FotoModel> Fotos
+        {
+            get
+            {
+                if (this._fotos == null)
+                {
+                    this._fotos = new FotoDAO(this._dbSSPContext);
+                }
+                return this._fotos;
             }
         }
 

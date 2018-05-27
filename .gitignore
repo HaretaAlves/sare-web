@@ -2,17 +2,22 @@
 *.v11.suo
 *.suo
 *.csproj.user
-
+package-lock.json
+/Business/app.config
 
 # Directories ignored
 */Properties/PublishProfiles/
-*/packages/*/
-*/bin/
-*/Properties/PublishProfiles/
-*/packages/*/
+/packages/*/
 */bin/
 */obj/
-*/WebUI/_uploads
+/Business/obj
+/Data/obj
+/Domain/obj
+/Interfaces/obj
+/WebUI/obj
+/WebUI/_uploads
+/WebUI/node_modules
+/WebUI/Content/dist/css
 .vs/
 _publish*/
 _bk/

@@ -28,12 +28,16 @@ namespace WebUI.ViewModels
         public int TurmaID { get; set; }
         public TurmaModel TurmaSelecionada { get; set; }
 
+        public int EscolaID { get; set; }
+        public EscolaModel EscolaSelecionada { get; set; }
+
         public int UserID { get; set; }
         public UsuarioModel User { get; set; }
 
         public List<AlunoModel> Alunos { get; set; }
         public List<TurmaModel> Turmas { get; set; }
         public List<GrupoModel> Grupos { get; set; }
+        public List<EscolaModel> Escolas { get; set; }
 
     }
 }

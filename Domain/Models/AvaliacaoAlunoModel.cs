@@ -11,7 +11,7 @@ namespace Domain.Models
     public class AvaliacaoAlunoModel
     {
         public int ID { get; set; }
-        public string Funcao { get; set; }
+        public int Funcao { get; set; }
         public DateTime Date { get; set; }
         public string Status { get; set; }
         public DateTime LastModifiedDate { get; set; }

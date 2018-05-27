@@ -1,0 +1,477 @@
+@import 'settings';
+@import 'login';
+
+* {
+    box-sizing: border-box;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+
+html, body {
+    height: 100%;
+    background-color: $bg-color;
+}
+
+.login-page {
+    font-family: "Roboto Regular";
+}
+
+.header {
+    height: 65px;
+    border-bottom: 1px solid red;
+    background-color: white;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.19), 0 0 5px rgba(0,0,0,0.23);
+    transition: max-width .3s linear;
+    -moz-transition: max-width .3s linear;
+    -webkit-transition: max-width .3s linear;
+    max-width: $expanded;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &-nav {
+        font-size: 16px;
+        padding: 10px 10px 10px 15px;
+
+        .nav-title {
+            display: block;
+            color: $black;
+            letter-spacing: 0.1em;
+            padding: 0.7rem 0;
+            text-decoration: none;
+
+            i {
+                color: $blue;
+                font-size: 25px;
+            }
+        }
+
+        a {
+            color: $black;
+            font-family: $lato;
+
+            &.active,
+            &:hover {
+                color: $blue;
+            }
+        }
+
+        .fas {
+            padding-right: 5px;
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            height: 30px;
+            width: 35px;
+            box-sizing: content-box;
+        }
+    }
+}
+
+.account-dropdown-wrapper {
+    .user-dropdown {
+        padding: 30px 0 50px 15px;
+        justify-content: center;
+        height: 75px;
+        box-sizing: content-box;
+        justify-content: start;
+        overflow: hidden;
+        white-space: nowrap;
+
+
+        .username-text {
+            margin-top: 15px;
+        }
+
+        img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            transition: box-shadow 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                box-shadow: 0 0 0 5px #e4e4e4;
+            }
+        }
+
+        .medal {
+            width: 13px;
+            height: 20px;
+            margin-left: 10px !important;
+        }
+    }
+
+    .dropdown-button {
+        background: transparent;
+        border: none;
+        outline: none !important;
+    
+        &.dropdown-toggle{
+            &::after {
+                content: none !important;
+            }
+        }
+    }
+
+    .account-dropdown {
+        margin-left: -1px;
+        margin-top: 20px;
+
+        .dropdown-item {
+            color: $dark-gray;
+            font-family: $lato;
+            padding: 10px 20px;
+
+            &.active,
+            &:hover {
+                color: $white;
+                background-color: $dark-gray
+            }
+
+            .fas {
+                font-size: 24px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.sidebar-logo {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .sidebar-logo__img {
+        flex-grow:0;
+        flex-shrink:0;
+    }
+
+    .sidebar-logo__text {
+        font-weight: 500;
+        font-size: 25px;
+        font-family: $lato;
+        color: $blue;
+    }
+}
+
+.sticky-top {
+    z-index: 99; /* makes sidebar on top of header*/
+}
+
+.content {
+    padding: 35px 50px 0 50px;
+    max-width: calc(100% - #{$expanded} - #{$collapse-button-width});
+    transition: max-width .3s linear;
+    -moz-transition: max-width .3s linear;
+    -webkit-transition: max-width .3s linear;
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    &:before {
+        content: "";
+        
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        
+        display: block;
+        width: 0;
+        padding-top: 0;
+          
+        border-radius: 100%;
+        
+        background-color: rgba(236, 240, 241, .3);
+        
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        transition-duration: 0.5s;
+    }
+
+    &:active {
+        &:before {
+            width: 120%;
+            padding-top: 120%;
+        
+            transition: width .2s ease-out, padding-top .2s ease-out;
+        }
+    }
+}
+
+.collapse-button {
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: $expanded;
+    padding: 0;
+    height: 100%;
+    width: $collapse-button-width;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $lato;
+    transition:left .3s linear;   
+    -moz-transition:left .3s linear;   
+    -webkit-transition:left .3s linear;
+    z-index: 101;
+
+    &::after {
+        font-family: $FontAwesome;
+        font-size: $medium-font-size;
+        color: #dedede;
+    }
+
+    &:hover {
+        &::after {
+            color: $light-gray;
+        }
+    }
+}
+
+//  -----------------------------
+// Text CSS Definitions
+//  -----------------------------
+
+.text-blue {
+    color: $blue;
+}
+
+.text-white {
+    color: $white;
+}
+
+.text-no-decoration {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+h1.page-header {
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    color: $blue;
+    font-size: 2rem;
+    border-bottom: 1px solid $blue;
+
+    i {
+        font-size: 22px;
+    }
+}
+
+//  -----------------------------
+// Form and Table CSS Definitions
+//  -----------------------------
+
+form {
+    .form-group {
+        margin-bottom: 30px;
+    }
+
+    .input-search {
+        display: inline-block;
+        width: 300px;
+    }
+
+    button {
+        background: $blue;
+        color: $white;
+        min-width: 120px;
+
+        i {
+            margin-right: 5px;
+        }
+
+        &:hover, &:active, &:focus {
+            background: $white;
+            color: $blue;
+            border: 1px solid $blue;
+        }
+    }
+
+    .btn-search {
+        margin-left: 10px;
+    }
+
+    .btn-clear {
+        margin-right: 10px;
+    }
+
+    .selectWrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #bbb;
+        border-radius: 2px;
+        background: #FFFFFF url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2211%22%20height%3D%2211%22%20viewBox%3D%220%200%2011%2011%22%3E%3Cpath%20d%3D%22M4.33%208.5L0%201L8.66%201z%22%20fill%3D%22%23007bff%22%2F%3E%3C%2Fsvg%3E') right 13px center no-repeat;
+    }
+
+    .selectWrapper select {
+        padding: 12px 40px 12px 20px;
+        font-size: 18px;
+        line-height: 18px;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+        -moz-appearance: none;
+        text-indent: 0.01px;
+        text-overflow: ellipsis;
+    }
+
+    .row.align-items-center .text-right {
+        margin-bottom: 40px;
+    }
+
+    .form-birthdate input {
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+}
+
+.checkbox,
+.radio {
+    position: relative;
+
+    &.rounded {
+        label {
+
+            &::before,
+            &::after {
+                border-radius: 50%;
+            }
+        }
+    }
+
+    input {
+        display: none;
+
+        &:checked + label {
+            &:after {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+        }
+    }
+
+    label {
+        cursor: pointer;
+        text-align: left;
+        padding-left: 40px;
+        vertical-align: text-top;
+
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          border-radius: 0;
+        }
+        &:before {
+          left: 0;
+          width: 30px;
+          height: 30px;
+          margin: -20px 0 0;
+          background: $white;
+          box-shadow: 0 0 1px $dark-gray;
+          border: 3px solid $blue;
+        }
+        &:after {
+          left: 7px;
+          width: 16px;
+          height: 16px;
+          margin: -13px 0 0;
+          opacity: 0;
+          background: $blue;
+          transform: translate3d(0, 0, 0);
+          transition: opacity 0.3s ease-in;
+        }
+
+        &:hover {
+            &::after {
+                opacity: 0.25;
+            }
+        }
+      }
+}
+
+.csv-import {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid $blue;
+    margin-bottom: 30px;
+
+    .form-group {
+        display: flex;
+        margin-bottom: 0;
+
+        input {
+            width: 35%;
+            display: inline-block;
+        }
+
+        button {
+            margin-left: 10px;
+        }
+    }
+}
+
+.table {
+    margin-bottom: 30px;
+
+    thead {
+        background: $blue;
+        color: $white;
+    }
+
+    tbody {
+        i.item-remove {
+            margin-right: 5px;
+            &:hover {
+                color: $red;
+            }
+        }
+
+        i.item-edit:hover {
+            color: $blue-overlay;
+        }
+    }
+}

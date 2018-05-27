@@ -10,5 +10,9 @@ namespace Interfaces.Business
     public interface IAlunoBusiness : IBusinessBase<AlunoModel>
     {
         IQueryable<AlunoModel> ListAllByNome(string nome);
+
+        IQueryable<AlunoModel> ListByTurmaID(int turmaID);
+
+        List<AlunoModel> AddList(List<AlunoModel> list);
     }
 }

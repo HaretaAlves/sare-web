@@ -16,5 +16,17 @@ namespace Data
         {
 
         }
+
+        public virtual EscolaModel GetByNome(string nome)
+        {
+            try
+            {
+                return this._dbSet.Where(x => x.Nome == nome).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

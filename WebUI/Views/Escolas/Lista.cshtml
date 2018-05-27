@@ -46,14 +46,8 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Escolas <small>Lista</small>
+            Escolas <i class="fas fa-angle-right"></i> Lista
         </h1>
-
-        <ol class="breadcrumb">
-            <li class="active">
-                <i class="fa fa-users"></i> Escolas
-            </li>
-        </ol>
     </div>
 </div>
 <!-- /.row -->
@@ -61,25 +55,39 @@
 
 @RenderPage("~/Views/Shared/_Messages.cshtml")
 
-<form name="ListaForm" id="ListaForm" action="/Escolas/Lista" method="post" role="form">
+<form name="ListaForm" id="ListaForm" action="/Escolas/Lista" method="post" role="form" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
     <div class="row">
 
-        <div class="col-md-6">
-
-            <div class="form-group">
-                <label>Nome</label>
-                <input type="text" name="nome" class="form-control" />
+        <div class="col-lg-12">
+            <div class="csv-import">
+                <label>Use o campo abaixo para importar dados de arquivos .csv</label>
+                <div class="form-group">
+                    <input type="file" class="form-control" name="foto" />
+                    <button type="button" onclick="document.forms[0].action='/Escolas/ImportItens';document.forms[0].submit();" class="btn btn-default">Salvar dados</button>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group pull-right">
-                <button type="reset" class="btn btn-default" onclick="document.getElementById('ListaForm').submit()">Buscar</button>
-                <button type="reset" class="btn btn-default" onclick="location.href='/Escolas/Novo'">Novo</button>
+        <div class="col-lg-12">
+
+            <div class="form-group d-flex justify-content-between">
+                <div class="text-left">
+                    <button type="reset" class="btn btn-default" onclick="location.href='/Escolas/Novo'">
+                        <i class="fas fa-plus"></i>
+                        <span>Nova escola</span>
+                    </button>
+                </div>
+                <div class="text-right">
+                    <input type="text" name="nome" class="form-control input-search" />
+                    <button type="reset" class="btn btn-default btn-search" onclick="document.getElementById('ListaForm').submit()">
+                        <i class="fas fa-search"></i>
+                        Buscar
+                    </button>
+                </div>
             </div>
 
         </div>
-
-        <div class="col-md-6"></div>
 
     </div>
 
@@ -88,13 +96,12 @@
 <div class="row">
     @if (Model.Escolas != null)
     {
-        <div class="col-md-6 table-responsive">
-            <table class="table table-bordered table-hover table-striped">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class=""></th>
-                        <th class=""></th>
-                        <th class="col-md-6">Nome</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -108,11 +115,15 @@
                     {
                         foreach (var item in Model.Escolas)
                         {
-                            <tr>
-                                <td style="text-align: center;"><i class="glyphicon glyphicon-remove confirmDelete" data-id="@item.ID" data-action="/Escolas/Excluir/" style="cursor:pointer;"></i></td>
-                                <td style="text-align: center;"><span onclick="location.href='/Escolas/Alterar/@item.ID'" class="glyphicon glyphicon-pencil" style="cursor:pointer;" /></td>
-                                <td>@item.Nome</td>
-                            </tr>
+                        <tr>
+                            <td>@item.Nome</td>
+                            <td style="text-align: center;">
+                                <i class="item-remove fas fa-trash" data-id="@item.ID" data-action="/Escolas/Excluir/" style="cursor:pointer;"></i>
+                                <span onclick="location.href='/Escolas/Alterar/@item.ID'" style="cursor:pointer;">
+                                    <i class="item-edit fas fa-edit"></i>
+                                </span>
+                            </td>
+                        </tr>
                         }
                     }
 

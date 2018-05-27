@@ -34,7 +34,7 @@ namespace Business
                 throw new Exception(ex.Message);
             }
             
-        }
+        }        
 
         public bool Delete(AlunoModel entity)
         {            
@@ -74,6 +74,41 @@ namespace Business
             {
                 var alunos = this.UOW.Alunos.List();
                 return alunos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<AlunoModel> AddList(List<AlunoModel> list)
+        {
+            try
+            {
+                List<AlunoModel> listaItensAdicionados = new List<AlunoModel>();
+                foreach (var item in list)
+                {
+                    var aluno = this.UOW.Alunos.Insert(item);
+                    listaItensAdicionados.Add(aluno);
+                }
+                this.UOW.Commit();
+
+                return listaItensAdicionados;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+
+        public IQueryable<AlunoModel> ListByTurmaID(int turmaID)
+        {
+            try
+            {
+                var results = this.UOW.Alunos.ListByTurmaID(turmaID);
+                return results;
             }
             catch (Exception ex)
             {

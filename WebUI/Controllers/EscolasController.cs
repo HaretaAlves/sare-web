@@ -3,8 +3,10 @@ using Domain.Extensions;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using WebUI.Utils;
@@ -88,7 +90,7 @@ namespace WebUI.Controllers
                     escola.Nome = model.Nome;
                     escola.LastModifiedDate = DateTime.Now;
                     escola.Status = "UPDATED";
-                    escola.UserID = 1;
+                    escola.UserID = SessionUtil.UserLogged.ID;
 
                     this.escolaBusiness.Update(escola);
                 }
@@ -98,7 +100,7 @@ namespace WebUI.Controllers
                     escola.Nome = model.Nome;
                     escola.LastModifiedDate = DateTime.Now;
                     escola.Status = "ADDED";
-                    escola.UserID = 1;
+                    escola.UserID = SessionUtil.UserLogged.ID;
 
                     this.escolaBusiness.Add(escola);
                 }
@@ -133,6 +135,70 @@ namespace WebUI.Controllers
             {
                 TempData[Constants.KEY_ERROR_MESSAGE] = ex.ToStringAll();
             }
+        }
+
+        public ActionResult ImportItens()
+        {
+            ActionResult result = null;
+            var pathReader = "";
+
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        var path = System.Web.HttpContext.Current.Server.MapPath("\\_arquivosCsv");
+                        var file = Request.Files[i];
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        string filename = string.Format("{0}_{1}", DateTime.Now.ToString("yyyyMMdd"), file.FileName);
+                        string fullname = string.Format("{0}\\{1}", path, filename);
+                        file.SaveAs(fullname);
+
+                        pathReader = fullname;
+
+                    }
+                    tran.Complete();
+                }
+
+                using (var reader = new StreamReader(pathReader))
+                {
+                    List<EscolaModel> listaEscolas = new List<EscolaModel>();
+
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+
+                        if (!line.Contains("Cadastros de escolas") && !line.Contains("Nome;"))
+                        {
+                            var item = new EscolaModel();
+                            var values = line.Split(';');
+                            item.Nome = values[0];
+                            item.LastModifiedDate = DateTime.Now;
+                            item.Status = "ADDED";
+                            item.UserID = SessionUtil.UserLogged.ID;
+
+                            listaEscolas.Add(item);
+                        }
+
+                    }
+
+                    this.escolaBusiness.AddList(listaEscolas);
+
+                }
+
+                TempData[Constants.KEY_SUCCESS_MESSAGE] = Constants.GENERIC_MSG_FORM_SUCCESS_SAVE_MANY_ITENS;
+                result = RedirectToAction(ActionLista);
+            }
+            catch (Exception ex)
+            {
+                TempData[Constants.KEY_ERROR_MESSAGE] = ex.ToStringAll();
+            }
+
+            return result;
         }
         
     }
