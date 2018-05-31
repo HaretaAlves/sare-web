@@ -18,6 +18,7 @@ namespace Data.UOW
         private IAlunoDAO<AlunoModel> _alunos;
         private IGrupoDAO<GrupoModel> _grupos;
         private IFotoDAO<FotoModel> _fotos;
+        private IAvaliacaoGrupoDAO<AvaliacaoGrupoModel> _avaliacaoGrupo;
 
         private SareWebContext _dbSSPContext { get; set; }
 
@@ -133,6 +134,18 @@ namespace Data.UOW
                     this._fotos = new FotoDAO(this._dbSSPContext);
                 }
                 return this._fotos;
+            }
+        }
+
+        public IAvaliacaoGrupoDAO<AvaliacaoGrupoModel> AvaliacoesGrupo
+        {
+            get
+            {
+                if (this._avaliacaoGrupo == null)
+                {
+                    this._avaliacaoGrupo = new AvaliacaoGrupoDAO(this._dbSSPContext);
+                }
+                return this._avaliacaoGrupo;
             }
         }
 

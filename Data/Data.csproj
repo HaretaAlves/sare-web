@@ -53,7 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\AvaliacaoAlunoDAO.cs" />
     <Compile Include="DAO\FotoDAO.cs" />
+    <Compile Include="DAO\AvaliacaoGrupoDAO.cs" />
     <Compile Include="DAO\GrupoDAO.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
