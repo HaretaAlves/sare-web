@@ -18,5 +18,6 @@ namespace Interfaces
         IAlunoDAO<AlunoModel> Alunos { get; }
         IGrupoDAO<GrupoModel> Grupos { get; }
         IFotoDAO<FotoModel> Fotos { get; }
+        IAvaliacaoGrupoDAO<AvaliacaoGrupoModel> AvaliacoesGrupo { get; }
     }
 }

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FotoBusiness.cs" />
+    <Compile Include="AvaliacaoGrupoBusiness.cs" />
     <Compile Include="GrupoBusiness.cs" />
     <Compile Include="EscolaBusiness.cs" />
     <Compile Include="AlunoBusiness.cs" />
