@@ -1,0 +1,98 @@
+﻿@model WebUI.ViewModels.AvaliacaoGrupoViewModel
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+        
+    </script>
+
+}
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Avaliações <i class="fas fa-angle-right"></i> Lista
+        </h1>
+    </div>
+</div>
+<!-- /.row -->
+<!-- Start feedback message code -->
+
+@RenderPage("~/Views/Shared/_Messages.cshtml")
+
+<form name="ListaForm" id="ListaForm" action="/AvaliacoesGrupo/Lista" method="post" role="form">
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="form-group d-flex justify-content-between">                
+                <div class="text-right">
+                    <input type="text" name="nome" class="form-control input-search" />
+                    <button type="reset" class="btn btn-default btn-search" onclick="document.getElementById('ListaForm').submit()">
+                        <i class="fas fa-search"></i>
+                        Buscar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+<div class="row">
+    @if (Model.AvaliacoesGrupo != null)
+    {
+        <div class="col-lg-12 table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Date</th>
+                        <th>Grupo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.AvaliacoesGrupo.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="4"><label>Nenhum registro encontrado</label></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.AvaliacoesGrupo)
+                        {
+                        <tr>
+                            <td>@item.Nome</td>
+                            <td>@item.Date</td>
+                            <td>@item.GrupoFK.Nome</td>
+                            <td style="text-align: center;">                                
+                                <span onclick="location.href='/Grupos/Alterar/@item.ID'" style="cursor:pointer;">
+                                    <i class="item-edit fas fa-eye"></i>
+                                </span>
+                            </td>
+                        </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+

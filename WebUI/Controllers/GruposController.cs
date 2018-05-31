@@ -16,7 +16,7 @@ namespace WebUI.Controllers
 {
     public class GruposController : BaseController
     {
-        public const string ControllerName = "Campanhas";
+        public const string ControllerName = "Grupos";
         public const string ActionLista = "Lista";
         public const string ActionNovo = "Novo";
         public const string ActionExcluir = "Excluir";
