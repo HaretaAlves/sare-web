@@ -125,8 +125,8 @@
                         {
                             <tr>
                                 <td>@item.Nome</td>
-                                <td></td>
-                                <td></td>
+                                <td>@item.TurmaFK.Nome</td>
+                                <td>@item.TurmaFK.EscolaFK.Nome</td>
                                 <td style="text-align: center;">
                                     <i class="item-remove fas fa-trash" data-id="@item.ID" data-action="/Alunos/Excluir/" style="cursor:pointer;"></i>      
                                     <span onclick="location.href='/Alunos/Alterar/@item.ID'" style="cursor:pointer;">

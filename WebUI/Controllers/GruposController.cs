@@ -47,6 +47,12 @@ namespace WebUI.Controllers
             model.Alunos = this.alunoBusiness.ListAll().ToList();
             model.Turmas = this.turmaBusiness.ListAll().ToList();
             model.Grupos = this.grupoBusiness.ListAll().ToList();
+
+            foreach (var item in model.Grupos)
+            {
+                item.TurmaFK = model.Turmas.Where(x => x.ID == item.TurmaID).FirstOrDefault();
+                item.TurmaFK.EscolaFK = this.escolaBusiness.GetById(item.TurmaFK.EscolaID);
+            }
             return View(model);
         }
 

@@ -41,6 +41,12 @@ namespace WebUI.Controllers
 
             model.Escolas = this.escolaBusiness.ListAll().ToList();
             model.Turmas = this.turmaBusiness.ListAll().ToList();
+
+            foreach (var item in model.Turmas)
+            {
+                item.EscolaFK = model.Escolas.Where(x => x.ID == item.EscolaID).FirstOrDefault();
+            }
+
             return View(model);
         }
 
