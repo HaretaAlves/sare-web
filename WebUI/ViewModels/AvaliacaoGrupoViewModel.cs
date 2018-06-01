@@ -22,5 +22,7 @@ namespace WebUI.ViewModels
 
         public List<AvaliacaoGrupoModel> AvaliacoesGrupo { get; set; }
 
+        public List<AvaliacaoAlunoModel> AvaliacoesAlunos { get; set; }
+
     }
 }

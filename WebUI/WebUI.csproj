@@ -227,6 +227,8 @@
     <Content Include="Content\dist\fonts\fa-regular-400.woff" />
     <Content Include="Content\dist\fonts\fa-regular-400.woff2" />
     <Content Include="Views\AvaliacoesGrupo\Lista.cshtml" />
+    <Content Include="Views\AvaliacoesGrupo\Visualizar.cshtml" />
+    <Content Include="Views\AvaliacoesGrupo\AvaliacoesAlunoLista.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

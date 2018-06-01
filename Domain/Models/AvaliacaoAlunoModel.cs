@@ -25,5 +25,8 @@ namespace Domain.Models
         [ForeignKey("AvaliacaoGrupoID")]
         public AvaliacaoGrupoModel AvGrupoFK { get; set; }
 
+        [NotMapped]
+        public string FuncaoNome { get; set; }
+
     }
 }

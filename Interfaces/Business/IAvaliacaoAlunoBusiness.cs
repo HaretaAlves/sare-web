@@ -8,7 +8,5 @@ using System.Threading.Tasks;
 namespace Interfaces.Business
 {
     public interface IAvaliacaoAlunoBusiness : IBusinessBase<AvaliacaoAlunoModel>
-    {
-        IQueryable<AvaliacaoGrupoModel> ListAllByNome(string nome);
-    }
+    {  }
 }
